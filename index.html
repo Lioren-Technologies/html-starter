@@ -78,14 +78,18 @@
 </header><div class="md:hidden hidden bg-white/95 backdrop-blur border-b border-gray-200" id="mobileMenu"><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#solutions">Solutions</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#simulations">Simulations</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#services">Services</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#about">About</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#contact">Contact</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="mailto:contact@liorentechnologies.com">Email Us</a></div>
 <!-- Hero -->
 <section class="relative min-h-[70vh] bg-gray-900 text-white flex items-center justify-center text-center" id="main">
-<div class="absolute inset-0 -z-10">
-<img alt="Abstract technology background" class="w-full h-full object-cover opacity-80" loading="eager" src="images/infinity-logo.webp"/>
-<div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
-</div>
-<div class="px-4 max-w-3xl">
-<h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">Innovate. Create. Transform.</h1>
-<p class="mt-6 text-lg text-gray-300">Deterministic safety for real-time, safety-critical systems.</p>
-<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"><a class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600" href="#contact">Request a demo</a><a class="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 font-semibold text-white/90 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-600" href="#simulations">See simulations</a></div></div>
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80">
+          <source src="video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
+    </div>
+    <div class="relative z-10 px-4 max-w-3xl">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">Innovate. Create. Transform.</h1>
+        <p class="mt-6 text-lg text-gray-300">Deterministic safety for real-time, safety-critical systems.</p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"><a class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600" href="#contact">Request a demo</a><a class="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 font-semibold text-white/90 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-600" href="#simulations">See simulations</a></div>
+    </div>
 </section>
 <!-- Solutions -->
 <section class="py-24 bg-white" id="solutions">
@@ -305,6 +309,52 @@
 <p class="mt-4 text-gray-600 max-w-2xl">Integration, certification support, and performance tuning for embedded and safety-critical systems. We partner with your team to deploy TSC, establish verifiable calibration pipelines, and tune real-time runtimes.</p>
 </div>
 </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="relative mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Pricing</h2>
+        <p class="mt-3 text-base md:text-lg text-gray-600">Per-developer licenses. Commercial development allowed. Production redistribution requires an enterprise agreement.</p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <!-- Sohvie Drive -->
+        <article class="rounded-2xl border p-6 shadow-sm hover:shadow-md transition">
+          <h3 class="text-xl font-semibold">Sohvie Drive — Developer License</h3>
+          <p class="mt-2 text-4xl font-bold tracking-tight">$150 <span class="text-base font-normal text-gray-600">one-time</span></p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-700">
+            <li>• 1 year of updates & basic support</li>
+            <li>• Per-developer seat, non-transferable</li>
+            <li>• Apple Pay / Google Pay via Stripe Checkout</li>
+          </ul>
+          <a href="https://buy.stripe.com/7sY6oJ40r6j3essbDdfYY00"
+             class="mt-6 inline-flex items-center justify-center rounded-xl bg-black px-4 py-2 text-white font-medium w-full"
+             aria-label="Buy Sohvie Drive via Stripe">
+            Buy Sohvie Drive
+          </a>
+        </article>
+
+        <!-- TSC Engine -->
+        <article class="rounded-2xl border p-6 shadow-sm hover:shadow-md transition">
+          <h3 class="text-xl font-semibold">TSC Engine — Developer License</h3>
+          <p class="mt-2 text-4xl font-bold tracking-tight">$150 <span class="text-base font-normal text-gray-600">one-time</span></p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-700">
+            <li>• 1 year of updates & basic support</li>
+            <li>• Per-developer seat, non-transferable</li>
+            <li>• Enterprise redistribution requires agreement</li>
+          </ul>
+          <a href="https://buy.stripe.com/7sY6oJ40r6j3essbDdfYY00"
+             class="mt-6 inline-flex items-center justify-center rounded-xl bg-black px-4 py-2 text-white font-medium w-full"
+             aria-label="Buy TSC Engine via Stripe">
+            Buy TSC Engine
+          </a>
+        </article>
+      </div>
+
+      <p class="mt-6 text-xs text-gray-500 text-center">Need multiple seats or redistribution rights? <a class="underline" href="mailto:contact@liorentechnologies.com?subject=Enterprise%20Licensing">Contact sales</a>.</p>
+    </section>
+
+
 <!-- About -->
 <section class="py-24 bg-white" id="about">
 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
@@ -735,3 +785,4 @@
 })();
 </script></body>
 </html>
+
