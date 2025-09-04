@@ -55,6 +55,7 @@
     #sohvieHost #sign1, #sohvieHost #sign2, #sohvieHost #obstacle { transition: opacity 0.5s ease-in-out; }
   </style>
 
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
 <meta content="Lioren Technologies" property="og:title"/><meta content="Deterministic safety layers for real-time, safety-critical systems." property="og:description"/><meta content="/images/infinity-logo.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link as="image" href="/images/infinity-logo.webp" rel="preload"/><script data-domain="liorentechnologies.com" defer="True" src="https://plausible.io/js/script.js"></script></head>
 <body class="min-h-screen bg-gray-50 text-gray-800"><a class="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:rounded focus:bg-white focus:px-3 focus:py-2" href="#main">Skip to content</a>
 <!-- Header -->
@@ -312,46 +313,9 @@
 
     <!-- Pricing -->
     <section id="pricing" class="relative mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Pricing</h2>
-        <p class="mt-3 text-base md:text-lg text-gray-600">Per-developer licenses. Commercial development allowed. Production redistribution requires an enterprise agreement.</p>
-      </div>
-
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <!-- Sohvie Drive -->
-        <article class="rounded-2xl border p-6 shadow-sm hover:shadow-md transition">
-          <h3 class="text-xl font-semibold">Sohvie Drive — Developer License</h3>
-          <p class="mt-2 text-4xl font-bold tracking-tight">$150 <span class="text-base font-normal text-gray-600">one-time</span></p>
-          <ul class="mt-4 space-y-2 text-sm text-gray-700">
-            <li>• 1 year of updates & basic support</li>
-            <li>• Per-developer seat, non-transferable</li>
-            <li>• Apple Pay / Google Pay via Stripe Checkout</li>
-          </ul>
-          <a href="https://buy.stripe.com/7sY6oJ40r6j3essbDdfYY00"
-             class="mt-6 inline-flex items-center justify-center rounded-xl bg-black px-4 py-2 text-white font-medium w-full"
-             aria-label="Buy Sohvie Drive via Stripe">
-            Buy Sohvie Drive
-          </a>
-        </article>
-
-        <!-- TSC Engine -->
-        <article class="rounded-2xl border p-6 shadow-sm hover:shadow-md transition">
-          <h3 class="text-xl font-semibold">TSC Engine — Developer License</h3>
-          <p class="mt-2 text-4xl font-bold tracking-tight">$150 <span class="text-base font-normal text-gray-600">one-time</span></p>
-          <ul class="mt-4 space-y-2 text-sm text-gray-700">
-            <li>• 1 year of updates & basic support</li>
-            <li>• Per-developer seat, non-transferable</li>
-            <li>• Enterprise redistribution requires agreement</li>
-          </ul>
-          <a href="https://buy.stripe.com/7sY6oJ40r6j3essbDdfYY00"
-             class="mt-6 inline-flex items-center justify-center rounded-xl bg-black px-4 py-2 text-white font-medium w-full"
-             aria-label="Buy TSC Engine via Stripe">
-            Buy TSC Engine
-          </a>
-        </article>
-      </div>
-
-      <p class="mt-6 text-xs text-gray-500 text-center">Need multiple seats or redistribution rights? <a class="underline" href="mailto:contact@liorentechnologies.com?subject=Enterprise%20Licensing">Contact sales</a>.</p>
+      <stripe-pricing-table pricing-table-id="prctbl_1S3fVdRPzuR30FMsnT1DjNDQ"
+publishable-key="pk_live_51S2N3tRPzuR30FMsTF2Wu4F6ehnzHbMsAwcWaTwAWXcE2iadlBr7wXrxx2hPlwI7bdvQV3mMhKC6WDeljTSl2fXR000sDFHsC2">
+</stripe-pricing-table>
     </section>
 
 
@@ -785,4 +749,5 @@
 })();
 </script></body>
 </html>
+
 
