@@ -1,57 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
 
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>Lioren Technologies — Deterministic solutions for real-time, safety-critical systems</title>
-  <meta content="Deterministic safety layers for embedded and cyber-physical systems. Featuring Threshold Symbolic Collapse (TSC), Sohvie Drive, and the Sohvie Shield AI Firewall." name="description" />
-  <link href="https://liorentechnologies.com/images/Lioren-logo.jpg" rel="icon" />
-
-  <link href="https://fonts.googleapis.com" rel="preconnect" />
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Lioren Technologies — Deterministic solutions for real-time, safety-critical systems</title>
+<meta content="Deterministic safety layers for embedded and cyber-physical systems. Threshold Symbolic Collapse (TSC), Sohvie Drive, and verifiable calibration for certification-ready deployments." name="description"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
     body { font-family: Inter, ui-sans-serif, system-ui; }
-    .cta-glow { box-shadow: 0 0 12px rgba(99, 102, 241, 0.7), 0 0 24px rgba(99, 102, 241, 0.5); transition: box-shadow 0.3s ease; }
-    .cta-glow:hover { box-shadow: 0 0 16px rgba(99, 102, 241, 0.9), 0 0 32px rgba(99, 102, 241, 0.7); }
+    .cta-glow {
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.7), 0 0 24px rgba(99, 102, 241, 0.5);
+      transition: box-shadow 0.3s ease;
+    }
+    .cta-glow:hover {
+      box-shadow: 0 0 16px rgba(99, 102, 241, 0.9), 0 0 32px rgba(99, 102, 241, 0.7);
+    }
   </style>
-
-  <style>
-    :root { --ring: #6366f1; --line: #e5e7eb; --fg: #0f172a; --muted: #475569; --good: #16a34a; --bad: #dc2626 }
-    .tabs { display: flex; flex-wrap: wrap; gap: .5rem; padding: .5rem; background: #f8fafc; border-bottom: 1px solid var(--line); position: sticky; top: 80px; z-index: 10 }
-    .tab { appearance: none; border: 1px solid var(--line); background: #fff; padding: .5rem 1rem; border-radius: 999px; cursor: pointer; font-weight: 600 }
-    .tab[aria-selected="true"] { outline: 2px solid var(--ring); outline-offset: 1px }
-    .panel { display: none }
-    .panel[aria-hidden="false"] { display: block }
-    .card { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: #fff }
-    .badge { font-size: 12px; padding: 3px 8px; border-radius: 999px; background: #f1f5f9; border: 1px solid var(--line) }
-    .pill-ok { color: #065f46; background: #d1fae5 }
-    .pill-bad { color: #7f1d1d; background: #fee2e2 }
-    canvas { display: block; width: 100%; height: 360px }
+<style>
+    :root{--ring:#6366f1;--line:#e5e7eb;--fg:#0f172a;--muted:#475569;--good:#16a34a;--bad:#dc2626}
+    .tabs{display:flex;flex-wrap: wrap;gap:.5rem;padding:.5rem;background:#f8fafc;border-bottom:1px solid var(--line);position:sticky;top:80px;z-index:10} /* Adjusted top for sticky header */
+    .tab{appearance:none;border:1px solid var(--line);background:#fff;padding:.5rem 1rem;border-radius:999px;cursor:pointer;font-weight:600}
+    .tab[aria-selected="true"]{outline:2px solid var(--ring);outline-offset:1px}
+    .panel{display:none}
+    .panel[aria-hidden="false"]{display:block}
+    .card{border:1px solid var(--line);border-radius:1rem;padding:1rem;background:#fff}
+    .badge{font-size:12px;padding:3px 8px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line)}
+    .pill-ok{color:#065f46;background:#d1fae5}
+    .pill-bad{color:#7f1d1d;background:#fee2e2}
+    canvas{display:block;width:100%;height:360px}
   </style>
-
-  <style>
-    #sohvieHost { font-family: 'Inter', sans-serif; background-color: #111827; color: #e5e7eb; padding: 1rem; border-radius: 0.5rem; }
-    #sohvieHost .gauge-container { position: relative; width: 220px; height: 110px; overflow: hidden; margin: 0 auto; }
-    #sohvieHost .gauge-bg { position: absolute; width: 220px; height: 110px; border-radius: 110px 110px 0 0; background: conic-gradient(from -90deg at 50% 100%, #22c55e, #facc15, #ef4444); }
-    #sohvieHost .gauge-mask { position: absolute; top: 6px; left: 6px; width: 208px; height: 104px; border-radius: 104px 104px 0 0; background: #1f2937; }
-    #sohvieHost .gauge-needle { position: absolute; bottom: 0; left: 50%; width: 2px; height: 100px; background: #f87171; transform-origin: bottom center; transition: transform 0.4s ease-in-out; }
-    #sohvieHost .threshold-marker { position: absolute; bottom: 0; left: 50%; width: 2px; height: 110px; background: #60a5fa; transform-origin: bottom center; transition: transform 0.4s ease-in-out; opacity: 0.8; }
-    #sohvieHost .threshold-marker::after { content: 'λ(t)'; position: absolute; top: -8px; left: 6px; color: #60a5fa; font-size: 10px; }
-    #sohvieHost .gauge-value { position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); font-size: 1.25rem; font-weight: 700; }
+<style>
+    /* Sohvie Drive Simulator Styles - Scoped to #sohvieHost */
+    #sohvieHost { font-family: 'Inter', sans-serif; background-color: #111827; color: #e5e7eb; padding: 1rem; border-radius: 0.5rem;}
+    #sohvieHost .gauge-container { position: relative; width: 200px; height: 100px; overflow: hidden; margin: 0 auto; }
+    #sohvieHost .gauge-bg { position: absolute; width: 200px; height: 100px; border-radius: 100px 100px 0 0; background: conic-gradient(from -90deg at 50% 100%, #22c55e, #facc15, #ef4444); }
+    #sohvieHost .gauge-mask { position: absolute; top: 5px; left: 5px; width: 190px; height: 95px; border-radius: 95px 95px 0 0; background: #1f2937; }
+    #sohvieHost .gauge-needle { position: absolute; bottom: 0; left: 50%; width: 2px; height: 90px; background: #f87171; transform-origin: bottom center; transition: transform 0.5s ease-in-out; }
+    #sohvieHost .threshold-marker { position: absolute; bottom: 0; left: 50%; width: 2px; height: 100px; background: #60a5fa; transform-origin: bottom center; transition: transform 0.5s ease-in-out; opacity: 0.7; }
+    #sohvieHost .threshold-marker::after { content: 'λ(t)'; position: absolute; top: -5px; left: 5px; color: #60a5fa; font-size: 10px; }
+    #sohvieHost .gauge-value { position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); font-size: 1.5rem; font-weight: 600; }
     #sohvieHost .slider-track { background: #374151; }
     #sohvieHost .slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; background: #3b82f6; cursor: pointer; border-radius: 50%; }
     #sohvieHost #car { transition: transform 0.5s ease, left 0.5s ease; }
     #sohvieHost .road-line { animation: sohvie-move-lines 2s linear infinite; }
     @keyframes sohvie-move-lines { 0% { transform: translateY(-100px); } 100% { transform: translateY(100px); } }
     #sohvieHost .sensor-beam { transition: opacity 0.5s; }
-    #sohvieHost #sign1, #sohvieHost #sign2, #sohvieHost #obstacle { transition: opacity 0.4s ease-in-out; }
+    #sohvieHost #sign1, #sohvieHost #sign2, #sohvieHost #obstacle { transition: opacity 0.5s ease-in-out; }
   </style>
-
-  <style>
+<style>
+    /* Sohvie Shield Simulator Styles - Scoped to #shieldHost */
     #shieldHost .status-led { width: 12px; height: 12px; border-radius: 50%; transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
     #shieldHost .led-green { background-color: #4ade80; box-shadow: 0 0 8px #4ade80; }
     #shieldHost .led-orange { background-color: #f97316; box-shadow: 0 0 8px #f97316; }
@@ -60,727 +62,969 @@
     #shieldHost .threshold-line { transition: bottom 0.5s ease; }
     #shieldHost .btn-glow { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3); }
     #shieldHost .btn-glow-red { box-shadow: 0 0 5px rgba(239, 68, 68, 0.5), 0 0 10px rgba(239, 68, 68, 0.3); }
-  </style>
-</head>
+</style>
 
-<body class="min-h-screen bg-gray-50 text-gray-800">
-  <a class="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:rounded focus:bg-white focus:px-3 focus:py-2" href="#main">Skip to content</a>
-
-  <header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur border-b border-gray-200" role="banner">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex h-20 items-center justify-between">
-        <a aria-label="Lioren Technologies home" class="flex items-center gap-3" href="#">
-          <img alt="Lioren Technologies logo" class="h-12 w-12 object-contain" height="48" loading="eager" src="https://liorentechnologies.com/images/Lioren-logo.jpg" width="48" />
-          <span class="text-gray-900 font-extrabold tracking-tight">Lioren Technologies</span>
-        </a>
-        <nav aria-label="Primary" class="hidden md:flex items-center space-x-8 text-sm font-medium">
-          <a class="text-gray-600 hover:text-gray-900 transition-colors" href="#solutions">Solutions</a>
-          <a class="text-gray-600 hover:text-gray-900 transition-colors" href="#simulations">Simulations</a>
-          <a class="text-gray-600 hover:text-gray-900 transition-colors" href="#services">Services</a>
-          <a class="text-gray-600 hover:text-gray-900 transition-colors" href="#about">About</a>
-          <a class="text-gray-600 hover:text-gray-900 transition-colors" href="#contact">Contact</a>
-          <a class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm cta-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600" href="mailto:contact@liorentechnologies.com">Email Us</a>
-        </nav>
-        <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu" class="md:hidden inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-600" id="menuToggle">Menu</button>
-      </div>
-    </div>
-  </header>
-  <div class="md:hidden hidden bg-white/95 backdrop-blur border-b border-gray-200" id="mobileMenu">
-    <a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#solutions">Solutions</a>
-    <a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#simulations">Simulations</a>
-    <a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#services">Services</a>
-    <a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#about">About</a>
-    <a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#contact">Contact</a>
-    <a class="block px-4 py-3 text-gray-700 hover:bg-gray-50" href="mailto:contact@liorentechnologies.com">Email Us</a>
-  </div>
-
-  <section class="relative min-h-[70vh] bg-gray-900 text-white flex items-center justify-center text-center" id="main">
+<script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+<meta content="Lioren Technologies" property="og:title"/><meta content="Deterministic safety layers for real-time, safety-critical systems." property="og:description"/><meta content="/images/infinity-logo.webp" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><link as="image" href="/images/infinity-logo.webp" rel="preload"/><script data-domain="liorentechnologies.com" defer="True" src="https://plausible.io/js/script.js"></script></head>
+<body class="min-h-screen bg-gray-50 text-gray-800"><a class="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:rounded focus:bg-white focus:px-3 focus:py-2" href="#main">Skip to content</a>
+<header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur border-b border-gray-200" role="banner">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="flex h-20 items-center justify-between">
+<a aria-label="Lioren Technologies home" class="flex items-center gap-3" href="#">
+<img alt="Lioren Technologies logo" class="h-12 w-12 object-contain" height="48" loading="eager" src="images/Lioren-logo.jpg" width="48"/>
+<span class="text-gray-900 font-extrabold tracking-tight">Lioren Technologies</span>
+</a>
+<nav aria-label="Primary" class="hidden md:flex items-center space-x-10 text-sm font-medium">
+<a class="text-gray-600 hover:text-gray-900" href="#solutions">Solutions</a>
+<a class="text-gray-600 hover:text-gray-900" href="#simulations">Simulations</a>
+<a class="text-gray-600 hover:text-gray-900" href="#services">Services</a>
+<a class="text-gray-600 hover:text-gray-900" href="#about">About</a>
+<a class="text-gray-600 hover:text-gray-900" href="#contact">Contact</a>
+<a class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm cta-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600" href="mailto:contact@liorentechnologies.com">Email Us</a>
+</nav>
+<button aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle menu" class="md:hidden inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-600" id="menuToggle">Menu</button></div>
+</div>
+</header><div class="md:hidden hidden bg-white/95 backdrop-blur border-b border-gray-200" id="mobileMenu"><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#solutions">Solutions</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#simulations">Simulations</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#services">Services</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#about">About</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="#contact">Contact</a><a class="block px-4 py-3 border-b border-gray-200 text-gray-700 hover:bg-gray-50" href="mailto:contact@liorentechnologies.com">Email Us</a></div>
+<section class="relative min-h-[70vh] bg-gray-900 text-white flex items-center justify-center text-center" id="main">
     <div class="absolute inset-0 -z-10 overflow-hidden">
-      <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80" poster="https://liorentechnologies.com/images/infinity-logo.webp">
-        <source src="https://liorentechnologies.com/video.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
+        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80">
+          <source src="video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
     </div>
     <div class="relative z-10 px-4 max-w-3xl">
-      <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">Innovate. Create. Transform.</h1>
-      <p class="mt-6 text-lg text-gray-300">Deterministic safety for real-time, safety-critical systems.</p>
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#solutions" class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3 font-semibold text-white shadow-md cta-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600">Explore Solutions</a>
-        <a href="#simulations" class="inline-flex items-center justify-center rounded-full bg-white/10 ring-1 ring-white/30 px-6 py-3 font-semibold text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white">Launch Simulations</a>
-      </div>
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight">Innovate. Create. Transform.</h1>
+        <p class="mt-6 text-lg text-gray-300">Deterministic safety for real-time, safety-critical systems.</p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"><a class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-3 font-semibold text-white shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600" href="#contact">Request a demo</a><a class="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 font-semibold text-white/90 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-600" href="#simulations">See simulations</a></div>
     </div>
-  </section>
+</section>
+<section class="py-24 bg-white" id="solutions">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Technology for critical systems</h2>
+<p class="mt-4 text-lg text-gray-600">Core technologies built for reliability, traceability, and certification.</p>
+</div>
+<div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+<article class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+<h3 class="text-lg font-bold mb-3">Threshold Symbolic Collapse (TSC)</h3>
+<p class="text-gray-600 leading-relaxed flex-grow">Deterministic trip-layer computing a linear collapse index. Designed for MCUs and FPGAs.</p>
+</article>
+<article class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+<h3 class="text-lg font-bold mb-3">Verifiable Calibration</h3>
+<p class="text-gray-600 leading-relaxed flex-grow">Reproducible workflows delivering signed manifests and coefficients for audits.</p>
+</article>
+<article class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+<h3 class="text-lg font-bold mb-3">Optimized Runtimes</h3>
+<p class="text-gray-600 leading-relaxed flex-grow">Fixed-rate loops, exhaustive timing tests, and seamless integration.</p>
+</article>
+<article class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+<h3 class="text-lg font-bold mb-3">Sohvie Drive</h3>
+<p class="text-gray-600 leading-relaxed flex-grow">Monitors autonomy stack coherence and triggers graceful containment.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="py-24 bg-gray-50" id="simulations">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Interactive Simulations</h2>
+<p class="mt-4 text-lg text-gray-600">Experience our core technologies in action. Interact with live demos of TSC and Sohvie Drive.</p>
+</div>
+<div class="bg-slate-50 rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+<header class="px-4 sm:px-6 lg:px-8 py-6 border-b border-slate-200 bg-white">
+<div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+<h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Live Demos</h3>
+<p class="text-sm text-slate-600">TSC + Sohvie Drive + Sohvie Shield</p>
+</div>
+</header>
+<nav aria-label="Simulation tabs" class="tabs" role="tablist">
+<button aria-controls="panel-tsc" aria-selected="true" class="tab" id="tab-tsc" role="tab">TSC Simulator</button>
+<button aria-controls="panel-sohvie" aria-selected="false" class="tab" id="tab-sohvie" role="tab">Sohvie Drive</button>
+<button aria-controls="panel-shield" aria-selected="false" class="tab" id="tab-shield" role="tab">Sohvie Shield</button>
+</nav>
+<main class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+<section aria-hidden="false" aria-labelledby="tab-tsc" class="panel" id="panel-tsc" role="tabpanel">
+<div class="grid md:grid-cols-2 gap-4">
+<article class="card">
+<h4 class="text-lg font-semibold mb-2">Summary (TSC)</h4>
+<p class="text-slate-600">The collapse index <span class="font-mono">C(t) = Σ(w·x) + Σ(α·dx/dt)</span> is compared to thresholds <span class="font-mono">θ_on &gt; θ_off</span> with a dwell time and a slope gate on <span class="font-mono">dC/dt</span>. When the conditions hold, the safety output <span class="font-mono">O(t)</span> asserts (latched until reset conditions).</p>
+<div class="mt-3 grid grid-cols-2 gap-1 text-sm" id="calBlock"></div>
+</article>
+<article class="card">
+<h4 class="text-lg font-semibold mb-2">Gap Meter</h4>
+<p class="text-slate-600">Gap <span class="font-mono">g(t)=θ_on − C(t)</span>; when <span class="font-mono">g(t) ≤ 0</span> continuously for the dwell and slope gate is satisfied, TSC trips.</p>
+<div aria-live="polite" class="mt-3 flex gap-2 flex-wrap">
+<span class="badge" id="gapLabel">g(t)=—</span>
+<span class="badge" id="slopeLabel">dC/dt=—</span>
+<span class="badge pill-ok" id="stateLabel">O(t)=0 SAFE</span>
+<span class="badge" id="leadLabel">Lead time: —</span>
+</div>
+</article>
+</div>
+<article aria-labelledby="sim-h2" class="card mt-4">
+<div class="flex items-center justify-between gap-3 flex-wrap">
+<h4 class="text-lg font-semibold" id="sim-h2">Interactive TSC Simulator</h4>
+<div aria-label="Simulation controls" class="flex items-center gap-3" role="group">
+<label class="text-sm" for="domainSel">Domain</label>
+<select class="border rounded-md px-2 py-1 text-sm" id="domainSel"></select>
+<label class="text-sm" for="sev">Severity (λ)</label>
+<input class="accent-indigo-600 w-48" id="sev" max="150" min="0" step="1" type="range" value="90"/>
+<span class="badge" id="sevVal">0.90</span>
+<button class="px-3 py-1 rounded-md border bg-slate-900 text-white text-sm" id="toggle" type="button">⏯️ Pause</button>
+<button class="px-3 py-1 rounded-md border bg-slate-900 text-white text-sm" id="trip" type="button">Jump to Trip</button>
+<button class="px-3 py-1 rounded-md border bg-slate-900 text-white text-sm" id="clear" type="button">Clear Trip</button>
+</div>
+</div>
+<div class="mt-3 border rounded-xl overflow-hidden">
+<canvas height="360" id="tscCanvas" title="Live plot of collapse index over time" width="960"></canvas>
+</div>
+<p class="mt-2 text-sm text-slate-600">Respects <span class="font-mono">prefers-reduced-motion</span>: if enabled, the simulation starts paused.</p>
+</article>
+</section>
+<section aria-hidden="true" aria-labelledby="tab-sohvie" class="panel" id="panel-sohvie" role="tabpanel">
+<article class="card">
+<h4 class="text-lg font-semibold mb-2">Sohvie Drive Simulator</h4>
+<p class="text-slate-600 mb-4">Symbolic Logic Safety System for Autonomous Vehicle Coherence.</p>
+<div id="sohvieHost">
+<main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<section class="lg:col-span-1 bg-gray-900 p-6 rounded-2xl shadow-lg space-y-8">
+<div>
+<h5 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2 text-white">Vehicle &amp; Environment Controls</h5>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-gray-300" for="vehicleSpeed">Vehicle Speed (km/h)</label>
+<div class="flex items-center space-x-4">
+<input class="w-full h-2 rounded-lg cursor-pointer slider-track" id="vehicleSpeed" max="130" min="0" oninput="this.nextElementSibling.textContent = this.value" type="range" value="50"/>
+<span class="font-mono text-blue-300 w-12 text-right">50</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-300" for="sensorNoise">Sensor Noise (σ)</label>
+<div class="flex items-center space-x-4">
+<input class="w-full h-2 rounded-lg cursor-pointer slider-track" id="sensorNoise" max="1" min="0" oninput="this.nextElementSibling.textContent = parseFloat(this.value).toFixed(2)" step="0.01" type="range" value="0.1"/>
+<span class="font-mono text-blue-300 w-12 text-right">0.10</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-300" for="envComplexity">Environmental Complexity (E)</label>
+<div class="flex items-center space-x-4">
+<input class="w-full h-2 rounded-lg cursor-pointer slider-track" id="envComplexity" max="1" min="0" oninput="this.nextElementSibling.textContent = parseFloat(this.value).toFixed(2)" step="0.01" type="range" value="0.2"/>
+<span class="font-mono text-blue-300 w-12 text-right">0.20</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h5 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2 text-white">Simulation Scenarios</h5>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<button class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg transition" id="scenario-normal">Normal</button>
+<button class="bg-yellow-600 hover:bg-yellow-500 text-white font-medium py-2 px-4 rounded-lg transition" id="scenario-signs">Contradictory Signs</button>
+<button class="bg-red-600 hover:bg-red-500 text-white font-medium py-2 px-4 rounded-lg transition" id="scenario-sensor">Sensor Failure</button>
+<button class="bg-purple-600 hover:bg-purple-500 text-white font-medium py-2 px-4 rounded-lg transition" id="scenario-ambiguity">Adversarial Markings</button>
+</div>
+</div>
+</section>
+<section class="lg:col-span-2 bg-gray-900 p-6 rounded-2xl shadow-lg">
+<div class="p-4 rounded-lg text-center mb-6 transition-all duration-500 bg-green-800 border-green-500 border" id="status-display">
+<h5 class="text-2xl font-bold" id="status-text">SYSTEM MONITORING</h5>
+<p class="text-sm" id="status-description">All systems nominal. Symbolic pressure is within the dynamic threshold.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-6">
+<div class="bg-gray-800 p-4 rounded-xl flex flex-col items-center justify-center">
+<h6 class="text-lg font-semibold text-gray-300">Symbolic Pressure (APS)</h6>
+<div class="gauge-container">
+<div class="gauge-bg"></div>
+<div class="gauge-mask"></div>
+<div class="gauge-needle" id="aps-needle"></div>
+<div class="threshold-marker" id="lambda-marker"></div>
+<span class="gauge-value text-white" id="aps-value">0.00</span>
+</div>
+</div>
+<div class="bg-gray-800 p-4 rounded-xl flex flex-col items-center justify-center">
+<h6 class="text-lg font-semibold text-gray-300">Dynamic Threshold λ(t)</h6>
+<div class="text-5xl font-bold text-blue-400 my-4" id="lambda-value">0.00</div>
+<p class="text-xs text-gray-400">Adapts to speed, noise, and complexity</p>
+</div>
+<div class="bg-gray-800 p-4 rounded-xl space-y-2">
+<h6 class="text-lg font-semibold text-gray-300 mb-2">Component Metrics</h6>
+<div class="flex justify-between items-center bg-gray-700 p-2 rounded-md">
+<span class="font-medium">Perception Conflict (P_t)</span>
+<span class="font-mono text-green-300" id="p-value">0.00</span>
+</div>
+<div class="flex justify-between items-center bg-gray-700 p-2 rounded-md">
+<span class="font-medium">Contradiction Density (C_t)</span>
+<span class="font-mono text-yellow-300" id="c-value">0.00</span>
+</div>
+<div class="flex justify-between items-center bg-gray-700 p-2 rounded-md">
+<span class="font-medium">Narrative Ambiguity (N_t)</span>
+<span class="font-mono text-purple-300" id="n-value">0.00</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-gray-800 p-4 rounded-xl">
+<h6 class="text-lg font-semibold text-gray-300 mb-2 text-center">Live Scenario Visualizer</h6>
+<div class="relative w-full h-64 bg-gray-700 rounded-md overflow-hidden">
+<div class="absolute inset-0 bg-gray-600">
+<div class="absolute left-1/2 -translate-x-1/2 w-1.5 h-full overflow-hidden">
+<div class="absolute w-full h-full">
+<div class="w-full h-1/4 bg-yellow-400 road-line" style="top: -25%;"></div>
+<div class="w-full h-1/4 bg-yellow-400 road-line" style="top: 25%;"></div>
+<div class="w-full h-1/4 bg-yellow-400 road-line" style="top: 75%;"></div>
+</div>
+</div>
+</div>
+<div class="absolute top-1/4 left-4 text-2xl opacity-0" id="sign1">🛑</div>
+<div class="absolute top-1/4 right-4 text-2xl opacity-0" id="sign2">🟢</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl opacity-0" id="obstacle">🚧</div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-12 h-20 bg-blue-500 rounded-t-lg border-2 border-gray-900 flex items-center justify-center" id="car">
+<div class="w-full h-1/3 bg-blue-300/50 rounded-t-md"></div>
+<div class="absolute top-1/2 w-2 h-2 bg-yellow-300 rounded-full" style="left: -2px;"></div>
+<div class="absolute top-1/2 w-2 h-2 bg-yellow-300 rounded-full" style="right: -2px;"></div>
+</div>
+<div class="sensor-beam absolute bottom-24 left-1/4 w-0.5 h-16 bg-red-500/50 opacity-0 transform -rotate-45 origin-bottom" id="sensor-beam-left"></div>
+<div class="sensor-beam absolute bottom-24 right-1/4 w-0.5 h-16 bg-red-500/50 opacity-0 transform rotate-45 origin-bottom" id="sensor-beam-right"></div>
+</div>
+</div>
+<div class="bg-gray-800 p-4 rounded-xl flex flex-col">
+<h6 class="text-lg font-semibold text-gray-300 mb-2">System Log</h6>
+<div class="flex-grow bg-gray-900 rounded-md p-2 text-sm font-mono text-gray-300 overflow-y-auto h-48 sm:h-56" id="log-container">
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</article>
+</section>
+<section aria-hidden="true" aria-labelledby="tab-shield" class="panel" id="panel-shield" role="tabpanel">
+    <article class="card">
+        <div id="shieldHost" class="!bg-gray-800 !border-gray-700 !text-gray-200 shadow-2xl shadow-blue-500/10 rounded-2xl p-6">
+            <div class="grid lg:grid-cols-3 gap-6 items-start">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="text-center">
+                        <h4 class="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Sohvie Shield</h4>
+                        <p class="text-gray-400 text-sm sm:text-base">Symbolic AI Firewall: Live Simulation</p>
+                    </div>
 
-  <section id="solutions" class="py-16">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Solutions</h2>
-        <p class="mt-3 text-gray-600">From symbolic thresholds to embedded autonomy—production-ready safety layers.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold text-gray-900">Threshold Symbolic Collapse (TSC)</h3>
-            <span class="badge">Deterministic</span>
-          </div>
-          <p class="mt-3 text-sm text-gray-600">A deterministic safety kernel that gates actions by a time-varying threshold λ(t). Ideal for robotics, power, and safety-critical control loops.</p>
-          <ul class="mt-4 text-sm text-gray-700 list-disc pl-5 space-y-1">
-            <li>λ(t) policy engine with programmable invariants</li>
-            <li>Hard real-time hooks for embedded targets</li>
-            <li>Traceable decisions for certification</li>
-          </ul>
-          <div class="mt-6 flex gap-3">
-            <a href="#" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm cta-glow" aria-label="Purchase TSC Developer License">Buy Developer License</a>
-            <a href="#simulations" class="inline-flex items-center justify-center rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50">Run Demo</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold text-gray-900">Sohvie Drive</h3>
-            <span class="badge">Embedded</span>
-          </div>
-          <p class="mt-3 text-sm text-gray-600">A lane-keeping and intervention layer. Computes risk, compares to λ(t), and executes fail-safes in microseconds.</p>
-          <ul class="mt-4 text-sm text-gray-700 list-disc pl-5 space-y-1">
-            <li>Curvature & weather-aware risk model</li>
-            <li>Predictive lane drift arrest</li>
-            <li>Hooks for CAN / ROS2</li>
-          </ul>
-          <div class="mt-6 flex gap-3">
-            <a href="#" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm cta-glow" aria-label="Purchase Sohvie Drive Developer License">Buy Developer License</a>
-            <a href="#simulations" class="inline-flex items-center justify-center rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50">Run Demo</a>
-          </div>
-        </div>
-        <div class="card">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold text-gray-900">Sohvie Shield — AI Firewall</h3>
-            <span class="badge">Runtime</span>
-          </div>
-          <p class="mt-3 text-sm text-gray-600">A runtime anomaly and prompt-injection firewall for edge and cloud agents. Monitors entropy, rate-limits collapse, and blocks unsafe sequences.</p>
-          <ul class="mt-4 text-sm text-gray-700 list-disc pl-5 space-y-1">
-            <li>Streaming anomaly score with λ(t)</li>
-            <li>Block / degrade / recover policies</li>
-            <li>Signed audit trail</li>
-          </ul>
-          <div class="mt-6 flex gap-3">
-            <a href="#" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm cta-glow" aria-label="Purchase Sohvie Shield Developer License">Buy Developer License</a>
-            <a href="#simulations" class="inline-flex items-center justify-center rounded-md border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50">Run Demo</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="simulations" class="py-2">
-    <div class="tabs" role="tablist" aria-label="Simulators">
-      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-tsc" id="tab-tsc">TSC</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-drive" id="tab-drive">Sohvie Drive</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-shield" id="tab-shield">Sohvie Shield</button>
-    </div>
-
-    <section id="panel-tsc" class="panel py-10" role="tabpanel" aria-labelledby="tab-tsc" aria-hidden="false">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-3 gap-6 items-start">
-          <div class="lg:col-span-2 card">
-            <h3 class="text-lg font-semibold mb-2">TSC λ(t) vs Energy E(t)</h3>
-            <canvas id="tscCanvas" width="900" height="360" class="bg-white rounded"></canvas>
-          </div>
-          <div class="card space-y-4">
-            <h4 class="text-base font-semibold">Controls</h4>
-            <label class="block text-sm">Load factor <span id="tscLoadVal" class="font-semibold">1.00</span>
-              <input id="tscLoad" type="range" min="0" max="200" value="100" class="w-full" />
-            </label>
-            <label class="block text-sm">Noise level <span id="tscNoiseVal" class="font-semibold">0.10</span>
-              <input id="tscNoise" type="range" min="0" max="100" value="10" class="w-full" />
-            </label>
-            <label class="block text-sm">λ(t) base threshold <span id="tscThreshVal" class="font-semibold">1.00</span>
-              <input id="tscThresh" type="range" min="50" max="200" value="100" class="w-full" />
-            </label>
-            <div class="flex items-center gap-3">
-              <button id="tscPause" class="rounded-md border px-3 py-1 text-sm">Pause</button>
-              <span class="px-2 py-1 rounded pill-ok" id="tscStatus">Stable</span>
-            </div>
-            <p class="text-xs text-gray-600">Rule: trigger <span class="font-semibold">collapse</span> when E(t) > λ(t) for ≥ N consecutive frames (N=20).</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="panel-drive" class="panel py-10" role="tabpanel" aria-labelledby="tab-drive" aria-hidden="true">
-      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div id="sohvieHost" class="card !bg-gray-900 !text-gray-100">
-          <div class="grid lg:grid-cols-3 gap-6">
-            <div class="lg:col-span-2">
-              <div class="relative h-72 bg-gray-800 rounded-md overflow-hidden">
-                <div class="absolute left-1/2 top-0 -translate-x-1/2 h-full w-1 bg-white/40 road-line"></div>
-                <div class="absolute left-1/3 top-0 -translate-x-1/2 h-full w-1 bg-white/20 road-line"></div>
-                <div class="absolute left-2/3 top-0 -translate-x-1/2 h-full w-1 bg-white/20 road-line"></div>
-                <div id="sign1" class="absolute top-6 left-6 text-xs bg-yellow-400/90 text-black px-2 py-1 rounded">Crosswind</div>
-                <div id="sign2" class="absolute top-6 right-6 text-xs bg-blue-400/90 text-black px-2 py-1 rounded">Wet Road</div>
-                <div id="obstacle" class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-red-500/80 text-white text-xs px-2 py-1 rounded opacity-0">Debris</div>
-                <div id="car" class="absolute bottom-4 left-1/2 -translate-x-1/2 w-10 h-16 rounded bg-indigo-400 shadow-lg"></div>
-              </div>
-              <div class="mt-6">
-                <div class="gauge-container">
-                  <div class="gauge-bg"></div>
-                  <div id="driveThresh" class="threshold-marker" style="transform: translateX(-50%) rotate(0deg)"></div>
-                  <div id="driveNeedle" class="gauge-needle" style="transform: translateX(-50%) rotate(0deg)"></div>
-                  <div id="driveValue" class="gauge-value">0.00</div>
-                </div>
-                <p class="mt-2 text-sm text-gray-300 text-center">Risk vs λ(t). Left = safe, right = critical.</p>
-              </div>
-            </div>
-            <div>
-              <div class="grid gap-4">
-                <label class="block text-sm">Speed (km/h) <span id="speedVal" class="font-semibold">60</span>
-                  <input id="speed" type="range" min="0" max="160" value="60" class="w-full" />
-                </label>
-                <label class="block text-sm">Lane curvature <span id="curveVal" class="font-semibold">0.20</span>
-                  <input id="curve" type="range" min="0" max="100" value="20" class="w-full" />
-                </label>
-                <label class="block text-sm">Weather
-                  <select id="weather" class="w-full mt-1 bg-gray-800 border border-gray-700 rounded p-2">
-                    <option value="clear">Clear</option>
-                    <option value="rain">Rain</option>
-                    <option value="night">Night</option>
-                  </select>
-                </label>
-                <label class="block text-sm">λ(t) threshold angle <span id="driveLambdaVal" class="font-semibold">40°</span>
-                  <input id="driveLambda" type="range" min="10" max="85" value="40" class="w-full" />
-                </label>
-                <div class="flex items-center gap-3">
-                  <button id="nudgeLeft" class="rounded-md border px-3 py-1 text-sm">Nudge Left</button>
-                  <button id="nudgeRight" class="rounded-md border px-3 py-1 text-sm">Nudge Right</button>
-                  <button id="injectObstacle" class="rounded-md border px-3 py-1 text-sm">Inject Debris</button>
-                </div>
-                <div class="flex items-center gap-2"><span class="text-sm">Status:</span><span id="driveStatus" class="px-2 py-1 rounded pill-ok">Stable</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="panel-shield" class="panel py-10" role="tabpanel" aria-labelledby="tab-shield" aria-hidden="true">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div id="shieldHost" class="card !bg-gray-800 !border-gray-700 !text-gray-200 shadow-2xl shadow-blue-500/10">
-                <div class="grid lg:grid-cols-3 gap-6 items-start">
-                    <div class="lg:col-span-2 space-y-6">
-                        <div class="text-center">
-                            <h4 class="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Sohvie Shield</h4>
-                            <p class="text-gray-400 text-sm sm:text-base">Symbolic AI Firewall: Live Simulation</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                        <div class="bg-gray-900/50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-400">APS</p>
+                            <p id="shield-aps-value" class="text-2xl font-semibold text-white">0.000</p>
                         </div>
-
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                            <div class="bg-gray-900/50 p-4 rounded-lg">
-                                <p class="text-sm text-gray-400">APS</p>
-                                <p id="aps-value" class="text-2xl font-semibold text-white">0.000</p>
-                            </div>
-                            <div class="bg-gray-900/50 p-4 rounded-lg">
-                                <p class="text-sm text-gray-400">Threshold</p>
-                                <p id="threshold-value" class="text-2xl font-semibold text-white">0.000</p>
-                            </div>
-                            <div class="bg-gray-900/50 p-4 rounded-lg">
-                                <p class="text-sm text-gray-400">ALC Status</p>
-                                <div class="flex items-center justify-center space-x-2 mt-2">
-                                    <div id="alc-led" class="status-led led-green"></div>
-                                    <span id="alc-status" class="text-lg font-medium text-green-400">Nominal</span>
-                                </div>
-                            </div>
-                            <div class="bg-gray-900/50 p-4 rounded-lg">
-                                <p class="text-sm text-gray-400">Cooldown</p>
-                                <p id="cooldown-value" class="text-2xl font-semibold text-white">-</p>
+                        <div class="bg-gray-900/50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-400">Threshold</p>
+                            <p id="shield-threshold-value" class="text-2xl font-semibold text-white">0.000</p>
+                        </div>
+                        <div class="bg-gray-900/50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-400">ALC Status</p>
+                            <div class="flex items-center justify-center space-x-2 mt-2">
+                                <div id="alc-led" class="status-led led-green"></div>
+                                <span id="alc-status" class="text-lg font-medium text-green-400">Nominal</span>
                             </div>
                         </div>
-                        
-                        <div id="warning-container" class="h-6 text-center">
-                            <p id="warning-message" class="text-orange-400 font-medium"></p>
+                        <div class="bg-gray-900/50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-400">Cooldown</p>
+                            <p id="cooldown-value" class="text-2xl font-semibold text-white">-</p>
                         </div>
+                    </div>
+                    
+                    <div id="warning-container" class="h-6 text-center">
+                        <p id="warning-message" class="text-orange-400 font-medium"></p>
+                    </div>
 
-                        <div class="bg-gray-900/50 p-4 rounded-lg h-64 w-full flex items-end justify-center">
-                            <div id="visualizer-container" class="relative w-24 h-full bg-gray-700 rounded-md overflow-hidden">
-                                <div id="visualizer-bar" class="visualizer-bar absolute bottom-0 w-full bg-green-500" style="height: 0%;"></div>
-                                <div id="threshold-line" class="threshold-line absolute w-full h-px bg-red-500/50" style="bottom: 50%;">
-                                    <span class="absolute right-full mr-2 text-xs text-red-400 -translate-y-1/2">θ</span>
-                                </div>
+                    <div class="bg-gray-900/50 p-4 rounded-lg h-64 w-full flex items-end justify-center">
+                        <div id="visualizer-container" class="relative w-24 h-full bg-gray-700 rounded-md overflow-hidden">
+                            <div id="visualizer-bar" class="visualizer-bar absolute bottom-0 w-full bg-green-500" style="height: 0%;"></div>
+                            <div id="threshold-line" class="threshold-line absolute w-full h-px bg-red-500/50" style="bottom: 50%;">
+                                <span class="absolute right-full mr-2 text-xs text-red-400 -translate-y-1/2">θ</span>
                             </div>
                         </div>
                     </div>
-                    <div class="space-y-4">
-                        <h4 class="text-base font-semibold text-white">Controls</h4>
-                        <p class="text-sm text-gray-400">Ping the APS (Symbolic Pressure) to generate a new score. If two consecutive scores fall below the dynamic threshold θ, ALC (Active Logic Containment) lockdown is triggered for 120 seconds.</p>
-                        <button id="ping-button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 btn-glow">
-                            Ping APS
-                        </button>
-                        <button id="reset-button" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 btn-glow-red">
-                            Reset System
-                        </button>
-                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-base font-semibold text-white">Controls</h4>
+                    <p class="text-sm text-gray-400">Ping the APS (Symbolic Pressure) to generate a new score. If two consecutive scores fall below the dynamic threshold θ, ALC (Active Logic Containment) lockdown is triggered for 120 seconds.</p>
+                    <button id="ping-button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 btn-glow">
+                        Ping APS
+                    </button>
+                    <button id="reset-button" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 btn-glow-red">
+                        Reset System
+                    </button>
                 </div>
             </div>
         </div>
+    </article>
+</section>
+</main>
+</div>
+</div>
+</section>
+<section class="py-20 bg-gray-50" id="services">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<h2 class="text-2xl font-bold">Services</h2>
+<p class="mt-4 text-gray-600 max-w-2xl">Integration, certification support, and performance tuning for embedded and safety-critical systems. We partner with your team to deploy TSC, establish verifiable calibration pipelines, and tune real-time runtimes.</p>
+</div>
+</section>
+
+    <section id="pricing" class="relative mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24">
+      <stripe-pricing-table pricing-table-id="prctbl_1S3fVdRPzuR30FMsnT1DjNDQ"
+publishable-key="pk_live_51S2N3tRPzuR30FMsTF2Wu4F6ehnzHbMsAwcWaTwAWXcE2iadlBr7wXrxx2hPlwI7bdvQV3mMhKC6WDeljTSl2fXR000sDFHsC2">
+</stripe-pricing-table>
     </section>
-  </section>
 
-  <section id="services" class="py-16 bg-white">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-10">
-        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Services</h2>
-        <p class="mt-3 text-gray-600">Integration, certification prep, and safety reviews—tailored to your stack.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <h3 class="font-semibold">Integration & Certification</h3>
-          <p class="text-sm text-gray-600 mt-1">Bring TSC / Sohvie into your embedded targets with deterministic hooks and artifacts your auditor will love.</p>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold">Custom Simulator / Digital Twin</h3>
-          <p class="text-sm text-gray-600 mt-1">We build targeted simulators to de-risk edge cases before they hit the field.</p>
-        </div>
-        <div class="card">
-          <h3 class="font-semibold">Safety Audits</h3>
-          <p class="text-sm text-gray-600 mt-1">Independent review of λ(t) policies, failure modes, and incident response.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section id="about" class="py-16">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">About Lioren Technologies</h2>
-      <p class="mt-4 text-gray-700">We design deterministic safety layers for real-time, safety-critical systems. Our philosophy is simple: <span class="font-semibold">prevent collapse before it begins</span>. With TSC, Sohvie Drive, and Sohvie Shield, we help teams ship with confidence.</p>
-    </div>
-  </section>
-
-  <section id="contact" class="py-16 bg-gray-100">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Contact</h2>
-      <p class="mt-3 text-gray-700">Questions or enterprise needs? We’d love to talk.</p>
-      <div class="mt-6 flex justify-center gap-3">
-        <a href="mailto:contact@liorentechnologies.com" class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm cta-glow">Email contact@liorentechnologies.com</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-8 text-center text-sm text-gray-500">© <span id="year"></span> Lioren Technologies. All rights reserved.</footer>
-
-  <script>
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn) {
-      menuBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('hidden') === false ? true : false;
-        menuBtn.setAttribute('aria-expanded', String(isOpen));
+<section class="py-24 bg-white" id="about">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Designed for verifiability</h2>
+<p class="mt-6 text-lg text-gray-600">We build cert-minded technology for safety-critical contexts. Our approach favors transparent mathematics, fixed-rate execution, and auditable artifacts over opaque, black-box models. This discipline shortens the path to compliance without sacrificing performance.</p>
+</div>
+<div class="aspect-square relative">
+<img alt="Block diagram illustrating deterministic safety layers" class="w-full h-full object-cover rounded-2xl shadow-xl" decoding="async" height="600" loading="lazy" src="https://placehold.co/600x600/e0e7ff/4338ca?text=Diagram" width="600"/>
+</div>
+</div>
+</section>
+<section class="py-24 bg-gray-50" id="contact">
+<div class="mx-auto max-w-3xl text-center">
+<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Let's build the future of safety</h2>
+<p class="mt-4 text-lg text-gray-600">Tell us about your use case and our engineering team will follow up.</p>
+<div class="mt-8">
+<a class="inline-flex items-center justify-center rounded-md bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600" href="mailto:contact@liorentechnologies.com">
+          Email us at contact@liorentechnologies.com
+        </a>
+</div>
+</div>
+</section>
+<footer class="bg-gray-900 text-white" role="contentinfo">
+<div class="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:px-8">
+<div class="flex justify-center">
+<img alt="Lioren Technologies logo" class="h-10 w-10 object-contain" decoding="async" height="40" loading="lazy" src="https://placehold.co/40x40/000000/FFFFFF?text=L" width="40"/>
+</div>
+<p class="mt-8 text-center text-sm text-gray-500">© <span id="current-year"></span> Lioren Technologies. All rights reserved.</p>
+</div>
+</footer>
+<script>
+    // --- Tabs ---
+    (function(){
+      const tabs = [
+        {btn: document.getElementById('tab-tsc'), panel: document.getElementById('panel-tsc')},
+        {btn: document.getElementById('tab-sohvie'), panel: document.getElementById('panel-sohvie')},
+        {btn: document.getElementById('tab-shield'), panel: document.getElementById('panel-shield')},
+      ];
+      tabs.forEach(({btn, panel})=>{
+        if (!btn) return; // Guard against null elements if this script runs before content is ready
+        btn.addEventListener('click',()=>{
+          tabs.forEach(({btn:pbtn,panel:pp})=>{ 
+            if (pbtn) pbtn.setAttribute('aria-selected','false'); 
+            if (pp) pp.setAttribute('aria-hidden','true'); 
+          });
+          btn.setAttribute('aria-selected','true'); 
+          if (panel) panel.setAttribute('aria-hidden','false');
+        });
       });
-      mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      }));
-    }
-
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Tabs logic (accessible)
-    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-    const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
-    function activateTab(tab) {
-      tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
-      panels.forEach(p => p.setAttribute('aria-hidden', String('#' + p.id !== '#' + tab.getAttribute('aria-controls') ? true : false)));
-      // Do not auto-scroll on tab change to avoid jarring jumps
-      // document.getElementById(tab.getAttribute('aria-controls')).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    tabs.forEach(t => t.addEventListener('click', () => activateTab(t)));
-    // keyboard support
-    tabs.forEach((t, i) => t.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') activateTab(tabs[(i + 1) % tabs.length]);
-      if (e.key === 'ArrowLeft') activateTab(tabs[(i - 1 + tabs.length) % tabs.length]);
-    }));
-
-    // ===== TSC Simulator =====
-    const tscCanvas = document.getElementById('tscCanvas');
-    const ctx = tscCanvas.getContext('2d');
-    const tscLoad = document.getElementById('tscLoad');
-    const tscNoise = document.getElementById('tscNoise');
-    const tscThresh = document.getElementById('tscThresh');
-    const tscLoadVal = document.getElementById('tscLoadVal');
-    const tscNoiseVal = document.getElementById('tscNoiseVal');
-    const tscThreshVal = document.getElementById('tscThreshVal');
-    const tscStatus = document.getElementById('tscStatus');
-    const tscPause = document.getElementById('tscPause');
-
-    let running = true;
-    if (tscPause) {
-        tscPause.addEventListener('click', () => { running = !running; tscPause.textContent = running ? 'Pause' : 'Resume'; });
-    }
-
-    const W = tscCanvas.width, H = tscCanvas.height;
-    const bufLen = 300; // samples on screen
-    let E = new Array(bufLen).fill(0);
-    let L = new Array(bufLen).fill(1);
-    let t = 0, collapseCounter = 0;
-
-    function lerp(a,b,x){return a+(b-a)*x}
-    function randn(){ // simple normal-ish via Box-Muller
-      let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random();
-      return Math.sqrt(-2.0*Math.log(u))*Math.cos(2.0*Math.PI*v);
-    }
-
-    function stepTSC(){
-      const load = Number(tscLoad.value)/100; // 0..2
-      const noise = Number(tscNoise.value)/100; // 0..1
-      const lambda = Number(tscThresh.value)/100; // 0.5..2
-
-      t += 0.05;
-      const base = 0.9 + 0.2*Math.sin(t*0.9) + 0.1*Math.sin(t*0.27 + 1.3);
-      const energy = Math.max(0, base*load + noise*randn());
-
-      E.push(energy); E.shift();
-      const lt = 0.9 + 0.1*Math.sin(t*0.4); // gently varying λ modulation
-      L.push(lambda*lt); L.shift();
-
-      // collapse detection: E>λ for N consecutive frames
-      const N = 20;
-      if (E[E.length-1] > L[L.length-1]){
-        collapseCounter++;
-      } else {
-        collapseCounter = Math.max(0, collapseCounter - 2); // hysteresis
-      }
-      const collapsed = collapseCounter >= N;
-      tscStatus.textContent = collapsed ? 'Collapse' : 'Stable';
-      tscStatus.className = 'px-2 py-1 rounded ' + (collapsed ? 'pill-bad' : 'pill-ok');
-
-      tscLoadVal.textContent = load.toFixed(2);
-      tscNoiseVal.textContent = noise.toFixed(2);
-      tscThreshVal.textContent = lambda.toFixed(2);
-    }
-
-    function drawTSC(){
-      ctx.clearRect(0,0,W,H);
-      // axes
-      ctx.strokeStyle = '#e5e7eb'; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(40,10); ctx.lineTo(40,H-30); ctx.lineTo(W-10,H-30); ctx.stroke();
-      // labels
-      ctx.fillStyle = '#475569'; ctx.font = '12px Inter, sans-serif';
-      ctx.fillText('E(t), λ(t)', 8, 20); ctx.fillText('time →', W-70, H-12);
-
-      const plotW = W-60, plotH = H-50, x0 = 40, y0 = 10;
-      // find max for scaling (keep stable)
-      const maxVal = 2.5;
-      function yMap(v){ return y0 + plotH - (v/maxVal)*plotH; }
-
-      // draw λ(t)
-      ctx.strokeStyle = '#60a5fa'; ctx.lineWidth = 1.5; ctx.setLineDash([6,4]);
-      ctx.beginPath();
-      L.forEach((v,i)=>{ const x = x0 + (i/(bufLen-1))*plotW; const y = yMap(v); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
-      ctx.stroke(); ctx.setLineDash([]);
-
-      // draw E(t)
-      ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2;
-      ctx.beginPath();
-      E.forEach((v,i)=>{ const x = x0 + (i/(bufLen-1))*plotW; const y = yMap(v); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
-      ctx.stroke();
-
-      // fill if crossing
-      ctx.globalAlpha = 0.08; ctx.fillStyle = '#ef4444';
-      for(let i=0;i<bufLen;i++){
-        if (E[i]>L[i]){ const x = x0 + (i/(bufLen-1))*plotW; ctx.fillRect(x, yMap(Math.max(E[i],L[i])), 2, yMap(Math.min(E[i],L[i]))-yMap(Math.max(E[i],L[i]))); }
-      }
-      ctx.globalAlpha = 1;
-    }
-
-    function loopTSC(){
-      if (running) { stepTSC(); drawTSC(); }
-      requestAnimationFrame(loopTSC);
-    }
-    loopTSC();
-
-    // ===== Sohvie Drive =====
-    const speed = document.getElementById('speed');
-    const curve = document.getElementById('curve');
-    const weather = document.getElementById('weather');
-    const driveNeedle = document.getElementById('driveNeedle');
-    const driveThresh = document.getElementById('driveThresh');
-    const driveValue = document.getElementById('driveValue');
-    const driveStatus = document.getElementById('driveStatus');
-    const driveLambda = document.getElementById('driveLambda');
-    const driveLambdaVal = document.getElementById('driveLambdaVal');
-    const speedVal = document.getElementById('speedVal');
-    const curveVal = document.getElementById('curveVal');
-    const car = document.getElementById('car');
-    const sign1 = document.getElementById('sign1');
-    const sign2 = document.getElementById('sign2');
-    const obstacle = document.getElementById('obstacle');
-    const nudgeLeft = document.getElementById('nudgeLeft');
-    const nudgeRight = document.getElementById('nudgeRight');
-    const injectObstacle = document.getElementById('injectObstacle');
-
-    let lateral = 0; // -1..1
-    let obstacleTimer = 0;
-
-    function driveRisk(){
-      const v = Number(speed.value); // 0..160
-      const k = Number(curve.value)/100; // 0..1
-      const env = weather.value; // clear, rain, night
-      const envFactor = env === 'clear' ? 1 : (env==='rain'? 1.25 : 1.15);
-      // risk model: speed^2, curvature, lateral offset, env
-      const base = (v/120)**2 * 0.6 + k*0.8 + Math.abs(lateral)*0.6;
-      const noise = 0.03*randn();
-      const risk = Math.max(0, base*envFactor + noise);
-      return Math.min(2.5, risk); // cap for gauge mapping
-    }
-
-    function updateDrive(){
-      // UI labels
-      speedVal.textContent = speed.value;
-      curveVal.textContent = (Number(curve.value)/100).toFixed(2);
-      driveLambdaVal.textContent = driveLambda.value + '°';
-
-      // threshold angle mapping (deg from -90 to +90)
-      const thAng = -90 + (Number(driveLambda.value)/100)*180; // but slider 10..85; adjust
-      const thAdj = Number(driveLambda.value);
-      driveThresh.style.transform = `translateX(-50%) rotate(${thAdj-90}deg)`;
-
-      // risk compute
-      const r = driveRisk();
-      driveValue.textContent = r.toFixed(2);
-      // map risk [0..2.5] to angle [-90..+90]
-      const ang = -90 + (r/2.5)*180;
-      driveNeedle.style.transform = `translateX(-50%) rotate(${ang}deg)`;
-
-      // compare to threshold: convert threshold slider to risk cutoff proportionally
-      const cutoff = (Number(driveLambda.value)/85) * 2.2; // heuristic mapping
-      const breach = r > cutoff;
-      driveStatus.textContent = breach ? 'Intervene' : 'Stable';
-      driveStatus.className = 'px-2 py-1 rounded ' + (breach ? 'pill-bad' : 'pill-ok');
-
-      // car lateral dynamics
-      car.style.left = `calc(50% + ${lateral*80}px)`;
-
-      // env cues
-      sign1.style.opacity = (weather.value==='rain'||Number(curve.value)>60) ? '1' : '0';
-      sign2.style.opacity = (weather.value==='rain') ? '1' : '0';
-
-      // obstacle fade
-      if (obstacleTimer>0){ obstacleTimer--; obstacle.style.opacity = '1'; } else { obstacle.style.opacity = '0'; }
-    }
-
-    nudgeLeft.addEventListener('click',()=>{ lateral = Math.max(-1, lateral - 0.1); updateDrive(); });
-    nudgeRight.addEventListener('click',()=>{ lateral = Math.min( 1, lateral + 0.1); updateDrive(); });
-    injectObstacle.addEventListener('click',()=>{ obstacleTimer = 120; updateDrive(); });
-    [speed, curve, weather, driveLambda].forEach(el=>el.addEventListener('input', updateDrive));
-
-    setInterval(updateDrive, 200);
-    updateDrive();
-
-    // ===== Sohvie Shield (Integrated) =====
-    const apsValueEl = document.getElementById('aps-value');
-    const thresholdValueEl = document.getElementById('threshold-value');
-    const alcLedEl = document.getElementById('alc-led');
-    const alcStatusEl = document.getElementById('alc-status');
-    const cooldownValueEl = document.getElementById('cooldown-value');
-    const warningMessageEl = document.getElementById('warning-message');
-    const visualizerBarEl = document.getElementById('visualizer-bar');
-    const thresholdLineEl = document.getElementById('threshold-line');
-    const pingButton = document.getElementById('ping-button');
-    const resetButton = document.getElementById('reset-button');
+    })();
     
-    let cooldownTriggered = false;
-    let cooldownEndTime = 0;
-    let recentAps = [];
-    let cooldownInterval = null;
 
-    function _m_step(trials = 10000) {
-        let collapse_count = 0;
-        for (let i = 0; i < trials; i++) {
-            const a = Math.random();
-            const b = Math.random();
-            if (a * Math.sin(b * Math.PI) > 0.9) {
-                collapse_count++;
+    // --- TSC SIM ---
+    (function(){
+      const tscCanvas = document.getElementById('tscCanvas');
+      if (!tscCanvas) return; // Exit if the simulation canvas isn't on the page
+
+      const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const DT = 0.05, N = 320, t = Array.from({length:N}, (_,i)=>i*DT);
+      let paused = prefersReduce, severity = 0.90, idx = 0, latched=false;
+
+      const CAL_TABLE = [
+        {domain:'Default', W_AOA: 4.0, W_AIR: -0.2, W_VIB: 4.0, ALPHA_D_AIR: -0.2, THETA_ON: 27.6, THETA_OFF: 24.5, DWELL_SEC: 2.0, SLOPE_LIMIT: 2.0}
+      ];
+
+      function el(tag, cls, text){ const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+      const calBlock = document.getElementById('calBlock');
+      function renderCal(CAL){
+        if (!calBlock) return;
+        calBlock.innerHTML='';
+        ['W_AOA','W_AIR','W_VIB','ALPHA_D_AIR','THETA_ON','THETA_OFF','DWELL_SEC','SLOPE_LIMIT'].forEach(k=>{
+          calBlock.appendChild(el('div','font-mono text-sm', k + ' = ' + CAL[k]));
+        });
+      }
+
+      const domainSel = document.getElementById('domainSel');
+      if (domainSel) {
+          CAL_TABLE.forEach((p,i)=>{ const name = p.domain && p.domain.trim()!=='' ? p.domain : ('Profile '+(i+1)); const opt=document.createElement('option'); opt.value=i; opt.textContent=name; domainSel.appendChild(opt); });
+          if (!CAL_TABLE.length) { CAL_TABLE.push({domain:'Default',W_AOA:8,W_AIR:-0.4,W_VIB:4,ALPHA_D_AIR:-0.2,THETA_ON:27.6,THETA_OFF:24.5,DWELL_SEC:2,SLOPE_LIMIT:2}); }
+          domainSel.value = '0';
+      }
+      
+      const CAL = Object.assign({}, CAL_TABLE[0]);
+      renderCal(CAL);
+
+      const ctx = tscCanvas.getContext('2d');
+      const sev = document.getElementById('sev'), sevVal=document.getElementById('sevVal');
+      const gapLabel=document.getElementById('gapLabel'), slopeLabel=document.getElementById('slopeLabel'), stateLabel=document.getElementById('stateLabel');
+      const toggleBtn=document.getElementById('toggle'), btnTrip=document.getElementById('trip'), btnClear=document.getElementById('clear');
+      const leadLabel=document.getElementById('leadLabel');
+
+      function simulate(sev){
+        const aoa=[], air=[], vib=[];
+        for(let i=0;i<N;i++){
+          const ti=t[i];
+          aoa.push(5 + (13*sev)*(1-Math.exp(-ti/4.0)) + 0.3*Math.sin(0.8*ti));
+          air.push(220 - (80*sev)*(1-Math.exp(-ti/6.0)) + 1.5*Math.sin(0.5*ti));
+          vib.push(0.2 + (1.8*sev)*(1-Math.exp(-ti/3.5)) + 0.1*Math.sin(1.7*ti));
+        }
+        return {aoa,air,vib};
+      }
+      function derivative(arr){ const out=new Array(arr.length).fill(0); for(let i=1;i<arr.length;i++) out[i]=(arr[i]-arr[i-1])/DT; return out; }
+      function collapseIndex(ch){
+        const d_air=derivative(ch.air);
+        const C=[]; for(let i=0;i<N;i++) C.push(CAL.W_AOA*ch.aoa[i] + CAL.W_AIR*ch.air[i] + CAL.W_VIB*ch.vib[i] + CAL.ALPHA_D_AIR*d_air[i]);
+        const dC=derivative(C);
+        return {C,dC};
+      }
+      function tripLogic(C, dC){
+        const O=new Array(C.length).fill(false);
+        const dwellSamples = Math.max(1, Math.round(CAL.DWELL_SEC/DT));
+        let dwell=0; let tripped=false;
+        for(let i=0;i<C.length;i++){
+          if (!tripped){
+            if (C[i] >= CAL.THETA_ON && dC[i] >= CAL.SLOPE_LIMIT){
+              dwell++;
+              if (dwell >= dwellSamples){ tripped=true; }
+            } else { dwell=0; }
+          } else {
+            if (C[i] <= CAL.THETA_OFF){ tripped=false; dwell=0; }
+          }
+          O[i]=tripped;
+        }
+        return O;
+      }
+
+      function scaleX(time){ const w=tscCanvas.width; const T=t[t.length-1]; return (time/T)*w; }
+      function scaleY(val,ymin,ymax){ const h=tscCanvas.height; return h - ((val - ymin) / (ymax - ymin)) * h; }
+      function drawAxes(ymin,ymax){
+        const w=tscCanvas.width,h=tscCanvas.height; ctx.clearRect(0,0,w,h);
+        ctx.save();
+        ctx.strokeStyle='#e5e7eb'; ctx.lineWidth=1;
+        const steps=6; for(let i=0;i<=steps;i++){ const y= h*i/steps; ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
+        const yOn=scaleY(CAL.THETA_ON,ymin,ymax), yOff=scaleY(CAL.THETA_OFF,ymin,ymax);
+        ctx.strokeStyle='#0b7285'; ctx.setLineDash([6,4]); ctx.beginPath(); ctx.moveTo(0,yOn); ctx.lineTo(w,yOn); ctx.stroke();
+        ctx.setLineDash([4,6]); ctx.beginPath(); ctx.moveTo(0,yOff); ctx.lineTo(w,yOff); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle='#0b7285'; ctx.font='12px ui-sans-serif'; ctx.fillText('θ_on', 6, yOn-6); ctx.fillText('θ_off', 6, yOff-6);
+        ctx.restore();
+      }
+      function drawCurve(arr,ymin,ymax,i){
+        ctx.save(); ctx.strokeStyle='#111827'; ctx.lineWidth=2; ctx.beginPath();
+        for(let k=0;k<=i;k++){ const x=scaleX(t[k]); const y=scaleY(arr[k],ymin,ymax); if(k===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+        ctx.stroke(); ctx.restore();
+      }
+      function drawVLine(time,color,text,ymin,ymax){
+        const x=scaleX(time); ctx.save(); ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.setLineDash([4,4]);
+        ctx.beginPath(); ctx.moveTo(x,scaleY(ymin,ymin,ymax)); ctx.lineTo(x,scaleY(ymax,ymin,ymax)); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle=color; ctx.font='12px ui-sans-serif'; ctx.fillText(text, x+4, 24); ctx.restore();
+      }
+
+      function firstTripIndex(O){ for(let i=0;i<O.length;i++) if (O[i]) return i; return null; }
+      function proxyIndex(domain){
+        const name=(domain||'').toLowerCase();
+        if (name.includes('avi')){ for(let i=0;i<ch.aoa.length;i++) if (ch.aoa[i]>=15 && ch.air[i]<=150) return i; return null; }
+        const margin=5.0; for(let i=0;i<s.C.length;i++) if (s.C[i] >= (CAL.THETA_ON + margin)) return i; return null;
+      }
+      function updateLabels(i){
+        if (!gapLabel) return;
+        const c=s.C[i], gap=(CAL.THETA_ON - c), slope=s.dC[i];
+        gapLabel.textContent = 'g(t) = θ_on − C = ' + gap.toFixed(2);
+        slopeLabel.textContent = 'dC/dt = ' + slope.toFixed(2) + (slope>=CAL.SLOPE_LIMIT ? ' [Slope gate OK]' : ' [Slope gate OFF]');
+        stateLabel.textContent = O[i] ? 'O(t)=1 TRIPPED' : 'O(t)=0 SAFE';
+        stateLabel.className = 'badge ' + (O[i] ? 'pill-bad' : 'pill-ok');
+      }
+
+      let ch = simulate(severity), s = collapseIndex(ch), O = tripLogic(s.C, s.dC);
+      function redraw(i){
+        const ymin = Math.min(CAL.THETA_OFF, Math.min(...s.C)) - 5;
+        const ymax = Math.max(CAL.THETA_ON, Math.max(...s.C)) + 5;
+        drawAxes(ymin,ymax); drawCurve(s.C,ymin,ymax,i); updateLabels(i);
+        const iT = firstTripIndex(O), iP = proxyIndex(CAL.domain||'Default');
+        if (leadLabel) leadLabel.textContent = 'Lead time: —';
+        if (iT != null) drawVLine(t[iT], '#ef4444', 'Trip', ymin, ymax);
+        if (iP != null) drawVLine(t[iP], '#f59e0b', 'Proxy', ymin, ymax);
+        if (iT != null && iP != null && leadLabel) leadLabel.textContent = 'Lead time: ' + (t[iP]-t[iT]).toFixed(2) + ' s (positive = early warning)';
+      }
+      function loop(){ if (paused) { return; } idx = Math.min(idx+1, N-1); redraw(idx); if (idx < N-1) requestAnimationFrame(loop); }
+      
+      if (sev) sev.addEventListener('input', ()=>{ severity=parseInt(sev.value,10)/100; if (sevVal) sevVal.textContent=severity.toFixed(2); ch = simulate(severity); s = collapseIndex(ch); O = tripLogic(s.C, s.dC); idx=0; redraw(idx); });
+      if (toggleBtn) toggleBtn.addEventListener('click', ()=>{ paused=!paused; toggleBtn.textContent = paused ? '▶️ Resume' : '⏯️ Pause'; if(!paused) loop(); });
+      if (btnTrip) btnTrip.addEventListener('click', ()=>{ if (sev) { sev.value=140; sev.dispatchEvent(new Event('input')); } });
+      if (btnClear) btnClear.addEventListener('click', ()=>{ if (sev) { sev.value=20; sev.dispatchEvent(new Event('input')); } });
+      if (domainSel) domainSel.addEventListener('change', ()=>{ const p = CAL_TABLE[parseInt(domainSel.value,10)] || CAL_TABLE[0]; Object.assign(CAL, p); CAL.domain = p.domain; renderCal(CAL); ch = simulate(severity); s = collapseIndex(ch); O = tripLogic(s.C, s.dC); idx=0; redraw(idx); });
+      
+      redraw(0); if(!paused) setInterval(loop, 50);
+    })();
+
+    // --- Sohvie Drive SIM ---
+    (function() {
+        const sohviePanel = document.getElementById('panel-sohvie');
+        if (!sohviePanel) return; // Exit if the sim panel isn't on the page
+
+        const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+        const toAngle = (x) => -90 + clamp(x, 0, 1) * 180;
+        const fmt = (x, d=2) => Number(x).toFixed(d);
+
+        class SohvieDrive {
+            constructor() {
+                this.weights = { alpha: 0.4, beta: 0.35, gamma: 0.25 };
+                this.lambdaBase = 0.3;
+                this.lambdaFactors = { speed: 0.002, noise: 0.5, complexity: 0.4 };
+                this.metrics = { p: 0, c: 0, n: 0 };
+                this.aps = 0;
+                this.lambda = 0;
+                this.state = 'MONITORING';
+                this.lastState = this.state;
+                this.recoveryCounter = 0;
+                this.recoveryWindow = 5;
+                this.hysteresisDelta = 0.05;
+                this.currentScenario = 'normal';
+                this.scenarioInfluence = { p: 0.02, c: 0.02, n: 0.02 };
+            }
+            updateMetrics(vehicleState) {
+                const p_base = Math.random() * 0.1;
+                const c_base = Math.random() * 0.1;
+                const n_base = Math.random() * 0.1;
+                this.metrics.p = clamp(p_base + this.scenarioInfluence.p, 0, 1);
+                this.metrics.c = clamp(c_base + this.scenarioInfluence.c, 0, 1);
+                this.metrics.n = clamp(n_base + this.scenarioInfluence.n, 0, 1);
+            }
+            calculateAPS() {
+                const { alpha, beta, gamma } = this.weights;
+                this.aps = clamp(alpha*this.metrics.p + beta*this.metrics.c + gamma*this.metrics.n, 0, 1);
+            }
+            calculateLambda(vehicleState) {
+                const v = vehicleState.speed, sigma = vehicleState.noise, E = vehicleState.complexity;
+                this.lambda = clamp(this.lambdaBase + this.lambdaFactors.speed*v + this.lambdaFactors.noise*sigma + this.lambdaFactors.complexity*E, 0, 1);
+            }
+            checkState() {
+                const trigger = this.lambda;
+                const recover = clamp(this.lambda - this.hysteresisDelta, 0, 1);
+                if (this.aps >= trigger) {
+                    this.recoveryCounter = 0;
+                    if (this.state === 'MONITORING') this.state = 'WARNING';
+                    else if (this.state === 'WARNING') this.state = 'CONTAINMENT';
+                    else if (this.state === 'RECOVERY') this.state = 'WARNING';
+                } else if (this.aps < recover) {
+                    this.recoveryCounter += 1;
+                    if (this.state === 'CONTAINMENT' && this.recoveryCounter >= this.recoveryWindow) { this.state = 'RECOVERY'; this.recoveryCounter = 0; }
+                    else if (this.state === 'WARNING' && this.recoveryCounter >= 2) { this.state = 'MONITORING'; this.recoveryCounter = 0; }
+                    else if (this.state === 'RECOVERY' && this.recoveryCounter >= this.recoveryWindow) { this.state = 'MONITORING'; this.recoveryCounter = 0; }
+                } else {
+                    this.recoveryCounter = 0;
+                }
             }
         }
-        return collapse_count / trials;
-    }
 
-    function _resync_vector() {
-        // Placeholder
-    }
-    
-    function updateLambdaField(score_a, score_b) {
-        const monte = _m_step();
-        const _threshold_check = (a, b, c) => (a * 99 + b * 100 + c * 100) > 288;
-        if (_threshold_check(score_a, score_b, monte)) {
-            _resync_vector();
-        }
-    }
+        class UI {
+            constructor(engine) {
+                this.engine = engine;
+                this.el = {
+                    apsNeedle: document.getElementById('aps-needle'),
+                    lambdaMarker: document.getElementById('lambda-marker'),
+                    apsValue: document.getElementById('aps-value'),
+                    lambdaValue: document.getElementById('lambda-value'),
+                    pVal: document.getElementById('p-value'),
+                    cVal: document.getElementById('c-value'),
+                    nVal: document.getElementById('n-value'),
+                    statusBox: document.getElementById('status-display'),
+                    statusText: document.getElementById('status-text'),
+                    statusDesc: document.getElementById('status-description'),
+                    log: document.getElementById('log-container'),
+                    car: document.getElementById('car'),
+                    sign1: document.getElementById('sign1'),
+                    sign2: document.getElementById('sign2'),
+                    obstacle: document.getElementById('obstacle'),
+                    beamL: document.getElementById('sensor-beam-left'),
+                    beamR: document.getElementById('sensor-beam-right'),
+                };
+                this.bindScenarioButtons();
+            }
+            bindScenarioButtons() {
+                const scenarios = ['normal', 'signs', 'sensor', 'ambiguity'];
+                scenarios.forEach(name => {
+                    const btn = document.getElementById(`scenario-${name}`);
+                    if (btn) btn.addEventListener('click', () => this.setScenario(name));
+                });
+            }
+            setScenario(name) {
+                const e = this.engine;
+                e.currentScenario = name;
+                if (name === 'normal') {
+                    e.scenarioInfluence = { p: 0.02, c: 0.02, n: 0.02 };
+                    this.toggleObjects({sign1:0, sign2:0, obstacle:0, beams:0});
+                    this.appendLog('Scenario → Normal');
+                } else if (name === 'signs') {
+                    e.scenarioInfluence = { p: 0.15, c: 0.45, n: 0.12 };
+                    this.toggleObjects({sign1:1, sign2:1, obstacle:0, beams:0});
+                    this.appendLog('Scenario → Contradictory Signs (↑C_t, ↑P_t)');
+                } else if (name === 'sensor') {
+                    e.scenarioInfluence = { p: 0.55, c: 0.15, n: 0.10 };
+                    this.toggleObjects({sign1:0, sign2:0, obstacle:1, beams:1});
+                    this.appendLog('Scenario → Sensor Failure (↑P_t)');
+                } else if (name === 'ambiguity') {
+                    e.scenarioInfluence = { p: 0.12, c: 0.18, n: 0.5 };
+                    this.toggleObjects({sign1:0, sign2:0, obstacle:0, beams:0});
+                    this.appendLog('Scenario → Adversarial Markings (↑N_t)');
+                }
+            }
+            toggleObjects({sign1, sign2, obstacle, beams}) {
+                if(this.el.sign1) this.el.sign1.style.opacity = String(sign1);
+                if(this.el.sign2) this.el.sign2.style.opacity = String(sign2);
+                if(this.el.obstacle) this.el.obstacle.style.opacity = String(obstacle);
+                if(this.el.beamL) this.el.beamL.style.opacity = String(beams);
+                if(this.el.beamR) this.el.beamR.style.opacity = String(beams);
+            }
+            update(vehicleState) {
+                const e = this.engine;
+                if (this.el.apsNeedle) this.el.apsNeedle.style.transform = `rotate(${toAngle(e.aps)}deg)`;
+                if (this.el.lambdaMarker) this.el.lambdaMarker.style.transform = `rotate(${toAngle(e.lambda)}deg)`;
+                if (this.el.apsValue) this.el.apsValue.textContent = fmt(e.aps, 2);
+                if (this.el.lambdaValue) this.el.lambdaValue.textContent = fmt(e.lambda, 2);
+                if (this.el.pVal) this.el.pVal.textContent = fmt(e.metrics.p, 2);
+                if (this.el.cVal) this.el.cVal.textContent = fmt(e.metrics.c, 2);
+                if (this.el.nVal) this.el.nVal.textContent = fmt(e.metrics.n, 2);
 
-    const _decisions = [
-        { "c": 0.95, "r": 0.1 },
-        { "c": 0.2, "r": 0.95 },
-        { "c": 0.8, "r": 0.2 },
-        { "c": 0.3, "r": 0.7 },
-    ];
+                const box = this.el.statusBox;
+                if (!box) return;
 
-    function _λ(t) {
-        return 0.25 + 0.02 * (t % 5);
-    }
+                box.classList.remove('bg-green-800','border-green-500','bg-yellow-800','border-yellow-500','bg-red-800','border-red-500','bg-blue-800','border-blue-500');
+                let title = 'SYSTEM MONITORING';
+                let desc = 'All systems nominal. Symbolic pressure is within the dynamic threshold.';
+                if (e.state === 'MONITORING') { box.classList.add('bg-green-800','border-green-500');
+                } else if (e.state === 'WARNING') { title = 'WARNING'; desc = 'Pressure exceeds λ(t). Preparing containment actions.'; box.classList.add('bg-yellow-800','border-yellow-500');
+                } else if (e.state === 'CONTAINMENT') { title = 'CONTAINMENT ACTIVE'; desc = 'Applying plan simplification and speed caps. Maintain safe envelope.'; box.classList.add('bg-red-800','border-red-500');
+                } else if (e.state === 'RECOVERY') { title = 'RECOVERY'; desc = 'Stabilized below λ(t)-δ. Restoring capability in stages.'; box.classList.add('bg-blue-800','border-blue-500');
+                }
+                if (this.el.statusText) this.el.statusText.textContent = title;
+                if (this.el.statusDesc) this.el.statusDesc.textContent = desc;
 
-    function simulateAps(trials = 1000) {
-        let passed = 0;
-        const log = [];
-        const threshold = _λ(Math.floor(Date.now() / 1000) % 10);
-        for (let i = 0; i < trials; i++) {
-            const d = _decisions[Math.floor(Math.random() * _decisions.length)];
-            const score = d.c - d.r;
-            log.push(score);
-            if (score > threshold) {
-                passed++;
+                const car = this.el.car;
+                if (car) {
+                    if (e.state === 'CONTAINMENT') car.style.transform = 'translate(-50%, 0) scale(0.95)';
+                    else if (e.state === 'WARNING') { const drift = (Math.random() - 0.5) * 10; car.style.left = `calc(50% + ${drift}px)`; car.style.transform = 'translate(-50%, 0)';
+                    } else { car.style.left = '50%'; car.style.transform = 'translate(-50%, 0)'; }
+                }
+
+                if (e.state !== e.lastState) { this.appendLog(`State: ${e.lastState} → ${e.state}`); e.lastState = e.state; }
+            }
+            appendLog(text, faint=false) {
+                if (!this.el.log) return;
+                const ts = new Date().toLocaleTimeString();
+                const line = document.createElement('div');
+                line.textContent = `[${ts}] ${text}`;
+                if (faint) line.classList.add('text-gray-500');
+                const box = this.el.log;
+                box.appendChild(line);
+                box.scrollTop = box.scrollHeight;
+                while (box.childNodes.length > 50) box.removeChild(box.firstChild);
             }
         }
-        return [passed / trials, threshold];
-    }
 
-    function handlePing() {
-        const now = Date.now() / 1000;
-        const epsilon = 0.01;
+        const engine = new SohvieDrive();
+        const ui = new UI(engine);
+        ui.setScenario('normal');
 
-        if (cooldownTriggered && now < cooldownEndTime) {
-            const remaining = Math.ceil(cooldownEndTime - now);
-            updateUI({
-                aps: "0.000",
-                threshold: "N/A",
-                alc: true,
-                cooldown: remaining,
-                warning: "ALC lockdown active",
-                status: "Lockdown"
-            });
-            return;
+        function readVehicleState() {
+            const speedEl = document.getElementById('vehicleSpeed');
+            const noiseEl = document.getElementById('sensorNoise');
+            const complexEl = document.getElementById('envComplexity');
+            const speed = speedEl ? parseInt(speedEl.value, 10) : 50;
+            const noise = noiseEl ? parseFloat(noiseEl.value) : 0.1;
+            const complexity = complexEl ? parseFloat(complexEl.value) : 0.2;
+            return { speed, noise, complexity };
+        }
+
+        function tick() {
+            const v = readVehicleState();
+            engine.updateMetrics(v);
+            engine.calculateAPS();
+            engine.calculateLambda(v);
+            engine.checkState();
+            ui.update(v);
         }
         
-        if (cooldownTriggered && now >= cooldownEndTime) {
-            handleReset();
+        let simInterval = null;
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!simInterval) simInterval = setInterval(tick, 500);
+                } else {
+                    if (simInterval) { clearInterval(simInterval); simInterval = null; }
+                }
+            });
+        });
+        observer.observe(sohviePanel);
+    })();
+
+    // --- Sohvie Shield SIM ---
+    (function() {
+        const shieldPanel = document.getElementById('panel-shield');
+        if (!shieldPanel) return;
+
+        const apsValueEl = document.getElementById('shield-aps-value');
+        const thresholdValueEl = document.getElementById('shield-threshold-value');
+        const alcLedEl = document.getElementById('alc-led');
+        const alcStatusEl = document.getElementById('alc-status');
+        const cooldownValueEl = document.getElementById('cooldown-value');
+        const warningMessageEl = document.getElementById('warning-message');
+        const visualizerBarEl = document.getElementById('visualizer-bar');
+        const thresholdLineEl = document.getElementById('threshold-line');
+        const pingButton = document.getElementById('ping-button');
+        const resetButton = document.getElementById('reset-button');
+        
+        let cooldownTriggered = false;
+        let cooldownEndTime = 0;
+        let recentAps = [];
+        let cooldownInterval = null;
+
+        function _m_step(trials = 10000) {
+            let collapse_count = 0;
+            for (let i = 0; i < trials; i++) {
+                const a = Math.random();
+                const b = Math.random();
+                if (a * Math.sin(b * Math.PI) > 0.9) {
+                    collapse_count++;
+                }
+            }
+            return collapse_count / trials;
         }
 
-        const [apsScore, threshold] = simulateAps();
-        recentAps.push(apsScore);
-        if (recentAps.length > 2) {
-            recentAps = recentAps.slice(-2);
+        function _resync_vector() {
+            // Placeholder
+        }
+        
+        function updateLambdaField(score_a, score_b) {
+            const monte = _m_step();
+            const _threshold_check = (a, b, c) => (a * 99 + b * 100 + c * 100) > 288;
+            if (_threshold_check(score_a, score_b, monte)) {
+                _resync_vector();
+            }
         }
 
-        updateLambdaField(apsScore, threshold);
+        const _decisions = [
+            { "c": 0.95, "r": 0.1 },
+            { "c": 0.2, "r": 0.95 },
+            { "c": 0.8, "r": 0.2 },
+            { "c": 0.3, "r": 0.7 },
+        ];
 
-        if (recentAps.length === 2 && recentAps.every(score => score < (threshold - epsilon))) {
-            cooldownTriggered = true;
-            cooldownEndTime = now + 120;
+        function _λ(t) {
+            return 0.25 + 0.02 * (t % 5);
+        }
+
+        function simulateAps(trials = 1000) {
+            let passed = 0;
+            const log = [];
+            const threshold = _λ(Math.floor(Date.now() / 1000) % 10);
+            for (let i = 0; i < trials; i++) {
+                const d = _decisions[Math.floor(Math.random() * _decisions.length)];
+                const score = d.c - d.r;
+                log.push(score);
+                if (score > threshold) {
+                    passed++;
+                }
+            }
+            return [passed / trials, threshold];
+        }
+
+        function handlePing() {
+            const now = Date.now() / 1000;
+            const epsilon = 0.01;
+
+            if (cooldownTriggered && now < cooldownEndTime) {
+                const remaining = Math.ceil(cooldownEndTime - now);
+                updateUI({
+                    aps: "0.000",
+                    threshold: "N/A",
+                    alc: true,
+                    cooldown: remaining,
+                    warning: "ALC lockdown active",
+                    status: "Lockdown"
+                });
+                return;
+            }
+            
+            if (cooldownTriggered && now >= cooldownEndTime) {
+                handleReset();
+            }
+
+            const [apsScore, threshold] = simulateAps();
+            recentAps.push(apsScore);
+            if (recentAps.length > 2) {
+                recentAps = recentAps.slice(-2);
+            }
+
+            updateLambdaField(apsScore, threshold);
+
+            if (recentAps.length === 2 && recentAps.every(score => score < (threshold - epsilon))) {
+                cooldownTriggered = true;
+                cooldownEndTime = now + 120;
+                updateUI({
+                    aps: "0.000",
+                    threshold: threshold.toFixed(3),
+                    alc: true,
+                    cooldown: 120,
+                    warning: "Recursive collapse threshold breached",
+                    status: "Lockdown"
+                });
+                startCooldownTimer();
+            } else {
+                let status = "Nominal";
+                let warning = "";
+                if (apsScore < threshold) {
+                    status = "Warning";
+                    warning = "APS below threshold";
+                }
+                updateUI({
+                    aps: apsScore.toFixed(3),
+                    threshold: threshold.toFixed(3),
+                    alc: false,
+                    cooldown: "-",
+                    warning: warning,
+                    status: status
+                });
+            }
+        }
+        
+        function handleReset() {
+            cooldownTriggered = false;
+            cooldownEndTime = 0;
+            recentAps = [];
+            stopCooldownTimer();
             updateUI({
                 aps: "0.000",
-                threshold: threshold.toFixed(3),
-                alc: true,
-                cooldown: 120,
-                warning: "Recursive collapse threshold breached",
-                status: "Lockdown"
-            });
-            startCooldownTimer();
-        } else {
-            let status = "Nominal";
-            let warning = "";
-            if (apsScore < threshold) {
-                status = "Warning";
-                warning = "APS below threshold";
-            }
-            updateUI({
-                aps: apsScore.toFixed(3),
-                threshold: threshold.toFixed(3),
+                threshold: "0.000",
                 alc: false,
                 cooldown: "-",
-                warning: warning,
-                status: status
+                warning: "System reset successfully.",
+                status: "Nominal"
             });
+            setTimeout(() => {
+                if(!cooldownTriggered && warningMessageEl) warningMessageEl.textContent = "";
+            }, 2000);
         }
-    }
-    
-    function handleReset() {
-        cooldownTriggered = false;
-        cooldownEndTime = 0;
-        recentAps = [];
-        stopCooldownTimer();
-        updateUI({
-            aps: "0.000",
-            threshold: "0.000",
-            alc: false,
-            cooldown: "-",
-            warning: "System reset successfully.",
-            status: "Nominal"
-        });
-        setTimeout(() => {
-            if(!cooldownTriggered && warningMessageEl) warningMessageEl.textContent = "";
-        }, 2000);
-    }
 
-    function updateUI({ aps, threshold, alc, cooldown, warning, status }) {
-        if (!apsValueEl) return; // Exit if elements not on page (e.g. another tab is active)
-        apsValueEl.textContent = aps;
-        thresholdValueEl.textContent = threshold;
-        cooldownValueEl.textContent = cooldown;
-        warningMessageEl.textContent = warning;
-        alcStatusEl.textContent = status;
+        function updateUI({ aps, threshold, alc, cooldown, warning, status }) {
+            if (!apsValueEl) return;
+            apsValueEl.textContent = aps;
+            thresholdValueEl.textContent = threshold;
+            cooldownValueEl.textContent = cooldown;
+            warningMessageEl.textContent = warning;
+            alcStatusEl.textContent = status;
 
-        alcLedEl.classList.remove('led-green', 'led-orange', 'led-red');
-        alcStatusEl.classList.remove('text-green-400', 'text-orange-400', 'text-red-400');
-        
-        if (status === "Lockdown") {
-            alcLedEl.classList.add('led-red');
-            alcStatusEl.classList.add('text-red-400');
-        } else if (status === "Warning") {
-            alcLedEl.classList.add('led-orange');
-            alcStatusEl.classList.add('text-orange-400');
-        } else {
-            alcLedEl.classList.add('led-green');
-            alcStatusEl.classList.add('text-green-400');
-        }
-        
-        const apsFloat = parseFloat(aps) || 0;
-        const thresholdFloat = parseFloat(threshold) || 0;
-        const maxScore = 1.0;
-        const apsHeight = Math.max(0, Math.min(100, (apsFloat / maxScore) * 100));
-        const thresholdPosition = Math.max(0, Math.min(100, (thresholdFloat / maxScore) * 100));
-
-        visualizerBarEl.style.height = `${apsHeight}%`;
-        thresholdLineEl.style.bottom = `${thresholdPosition}%`;
-
-        visualizerBarEl.classList.remove('bg-green-500', 'bg-orange-500', 'bg-red-600');
-        if (status === "Lockdown") {
-            visualizerBarEl.classList.add('bg-red-600');
-        } else if (apsFloat < thresholdFloat) {
-            visualizerBarEl.classList.add('bg-orange-500');
-        } else {
-            visualizerBarEl.classList.add('bg-green-500');
-        }
-    }
-    
-    function startCooldownTimer() {
-        if (cooldownInterval) clearInterval(cooldownInterval);
-        cooldownInterval = setInterval(() => {
-            const now = Date.now() / 1000;
-            if (now >= cooldownEndTime) {
-                handleReset();
+            alcLedEl.classList.remove('led-green', 'led-orange', 'led-red');
+            alcStatusEl.classList.remove('text-green-400', 'text-orange-400', 'text-red-400');
+            
+            if (status === "Lockdown") {
+                alcLedEl.classList.add('led-red');
+                alcStatusEl.classList.add('text-red-400');
+            } else if (status === "Warning") {
+                alcLedEl.classList.add('led-orange');
+                alcStatusEl.classList.add('text-orange-400');
             } else {
-                const remaining = Math.ceil(cooldownEndTime - now);
-                if (cooldownValueEl) cooldownValueEl.textContent = remaining;
+                alcLedEl.classList.add('led-green');
+                alcStatusEl.classList.add('text-green-400');
             }
-        }, 1000);
-    }
+            
+            const apsFloat = parseFloat(aps) || 0;
+            const thresholdFloat = parseFloat(threshold) || 0;
+            const maxScore = 1.0;
+            const apsHeight = Math.max(0, Math.min(100, (apsFloat / maxScore) * 100));
+            const thresholdPosition = Math.max(0, Math.min(100, (thresholdFloat / maxScore) * 100));
 
-    function stopCooldownTimer() {
-        if(cooldownInterval) clearInterval(cooldownInterval);
-        cooldownInterval = null;
-    }
+            visualizerBarEl.style.height = `${apsHeight}%`;
+            thresholdLineEl.style.bottom = `${thresholdPosition}%`;
 
-    pingButton.addEventListener('click', handlePing);
-    resetButton.addEventListener('click', handleReset);
+            visualizerBarEl.classList.remove('bg-green-500', 'bg-orange-500', 'bg-red-600');
+            if (status === "Lockdown") {
+                visualizerBarEl.classList.add('bg-red-600');
+            } else if (apsFloat < thresholdFloat) {
+                visualizerBarEl.classList.add('bg-orange-500');
+            } else {
+                visualizerBarEl.classList.add('bg-green-500');
+            }
+        }
+        
+        function startCooldownTimer() {
+            if (cooldownInterval) clearInterval(cooldownInterval);
+            cooldownInterval = setInterval(() => {
+                const now = Date.now() / 1000;
+                if (now >= cooldownEndTime) {
+                    handleReset();
+                } else {
+                    const remaining = Math.ceil(cooldownEndTime - now);
+                    if (cooldownValueEl) cooldownValueEl.textContent = remaining;
+                }
+            }, 1000);
+        }
 
-    handleReset();
+        function stopCooldownTimer() {
+            if(cooldownInterval) clearInterval(cooldownInterval);
+            cooldownInterval = null;
+        }
+
+        if(pingButton) pingButton.addEventListener('click', handlePing);
+        if(resetButton) resetButton.addEventListener('click', handleReset);
+
+        handleReset();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    handleReset();
+                } else {
+                    stopCooldownTimer();
+                }
+            });
+        });
+        observer.observe(shieldPanel);
+    })();
+
   </script>
-</body>
+<script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+<script>
+(function(){
+  const toggle = document.getElementById('menuToggle');
+  const mobile = document.getElementById('mobileMenu');
+  if (toggle && mobile){
+    toggle.addEventListener('click', () => {
+      const isOpen = !mobile.classList.contains('hidden');
+      mobile.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+  const navLinks = Array.from(document.querySelectorAll('header nav a, #mobileMenu a'));
+  const map = new Map();
+  navLinks.forEach(a => {
+    const href = a.getAttribute('href')||'';
+    if (!href.startsWith('#')) return;
+    const id = href.replace('#','');
+    const section = document.getElementById(id);
+    if (section) map.set(section, a);
+  });
+  const activeClass = 'text-indigo-600';
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const a = map.get(e.target);
+      if (!a) return;
+      if (e.isIntersecting) {
+        navLinks.forEach(x=>x.classList.remove(activeClass));
+        a.classList.add(activeClass);
+      }
+    });
+  }, {rootMargin: '-40% 0px -55% 0px', threshold: 0});
+  map.forEach((_, section)=>obs.observe(section));
+})();
+</script></body>
 </html>
