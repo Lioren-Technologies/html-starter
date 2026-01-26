@@ -9,11 +9,11 @@
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #000000; /* Seamless transition between slides */
+            background-color: #000000; 
             overflow-x: hidden;
         }
 
-        /* This container ensures slides stack with zero vertical space */
+        /* The Stack: Centers the entire column of slides */
         .slide-stack {
             display: flex;
             flex-direction: column;
@@ -21,11 +21,14 @@
             width: 100%;
         }
 
+        /* The Fix: Limits the image size so it doesn't stretch and blur */
         .slide-stack img {
-            width: 100%;
-            max-width: 1920px; /* Limits width on ultra-wide monitors to prevent blurring */
+            width: auto;
+            max-width: 90%; /* Leaves a small margin so it doesn't hit the edges */
             height: auto;
-            display: block; /* Removes the tiny default gap at the bottom of images */
+            max-height: 95vh; /* Ensures the slide doesn't get taller than the screen */
+            display: block;
+            margin: 0 auto;
         }
 
         .footer-section {
