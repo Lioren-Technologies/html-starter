@@ -1,14 +1,27 @@
----
-name: HTML Starter
-slug: html-starter-with-analytics
-description: HTML5 template with analytics and advanced routing configuration.
-deployUrl: https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/html&project-name=html
-relatedTemplates:
-  - nextjs-boilerplate
----
+# Lioren Technology Site
 
-# HTML Starter
+Static GitHub Pages-ready site.
 
-This is a starter HTML5 templates which is configured with Vercel Analytics (through a `script` tag), advanced routing with [Vercel Edge Middleware](https://vercel.com/docs/concepts/functions/edge-middleware), as well as some basic styles
+## Publish
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/solutions/html&project-name=html)
+1. Create a GitHub repo.
+2. Upload these files and folders to the repo root:
+   - `index.html`
+   - `assets/`
+   - `.nojekyll`
+3. In GitHub, open `Settings` -> `Pages`.
+4. Set the source to:
+   - `Deploy from a branch`
+   - Branch: `main`
+   - Folder: `/ (root)`
+
+GitHub Pages will serve `index.html` automatically.
+
+## Live Files
+
+- `index.html`
+- `assets/lioren-logo-header.png`
+- `assets/lioren-logo-square.jpg`
+- `assets/lioren-tech-render.jpg`
+- `assets/lioren-brand-horizontal.png`
+- `assets/lioren-demo.mp4`
