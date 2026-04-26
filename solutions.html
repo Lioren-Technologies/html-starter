@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solutions — Lioren Technologies</title>
+  <meta name="description" content="Practical AI solutions for small and mid-size businesses. Document processing, workflow automation, content pipelines, and reporting." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0c0a1a;
+      --bg2:#110e22;
+      --bg3:#16122a;
+      --panel:rgba(20,16,36,0.9);
+      --border:rgba(155,74,110,0.15);
+      --border-strong:rgba(155,74,110,0.32);
+      --text:#ece8f5;
+      --muted:#7a6e90;
+      --accent:#9b4a6e;
+      --accent2:#c8862a;
+      --indigo:#6a6acc;
+      --mono:'DM Mono',monospace;
+      --head:'Syne',sans-serif;
+      --body:'DM Sans',sans-serif;
+      --container:min(1100px,calc(100% - 3rem));
+      --radius:3px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--body);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(155,74,110,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(155,74,110,0.02) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;z-index:0}
+    a{color:inherit;text-decoration:none}
+    .container{width:var(--container);margin:0 auto;position:relative;z-index:1}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:1px solid var(--border);background:rgba(12,10,26,0.96);backdrop-filter:blur(12px)}
+    .nav-inner{width:var(--container);margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:0.5rem}
+    .nav-logo img{height:36px;width:36px;object-fit:cover}
+    .nav-logo-text{font-family:var(--head);font-weight:800;font-size:1rem;letter-spacing:0.06em;color:var(--text)}
+    .nav-logo-text span{color:var(--accent2)}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-family:var(--mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent2)}
+    .nav-cta{padding:0.4rem 1rem;border:1px solid rgba(200,134,42,0.35);color:var(--accent2)!important;border-radius:var(--radius);transition:background 0.2s!important}
+    .nav-cta:hover{background:var(--accent2);color:#000!important}
+    .page-hero{padding:9rem 0 5rem;position:relative}
+    .page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 40%,rgba(155,74,110,0.08),transparent),radial-gradient(ellipse 40% 60% at 10% 70%,rgba(106,106,204,0.06),transparent);pointer-events:none}
+    .breadcrumb{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+    .breadcrumb a{color:var(--accent2)}
+    .breadcrumb span{margin:0 0.5rem;opacity:0.4}
+    .page-hero h1{font-family:var(--head);font-weight:800;font-size:clamp(2.4rem,4.8vw,4.2rem);line-height:1.08;letter-spacing:-0.02em;max-width:720px;margin-bottom:1.25rem}
+    .page-hero h1 em{font-style:normal;color:var(--accent2)}
+    .page-hero p{font-size:1rem;color:var(--muted);max-width:520px;line-height:1.8;font-weight:300;margin-bottom:2rem}
+    .btn-primary{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.8rem 1.75rem;background:var(--accent2);color:#000;border-radius:var(--radius);font-weight:500;transition:opacity 0.2s,transform 0.15s;display:inline-block;border:none;cursor:pointer}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+    section{padding:5.5rem 0;position:relative;z-index:1}
+    .alt-bg{background:var(--bg2)}
+    .alt-bg2{background:var(--bg3)}
+    .section-tag{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.85rem}
+    .section-title{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,2.6vw,2.3rem);letter-spacing:-0.02em;line-height:1.2;margin-bottom:1rem}
+    .section-body{font-size:0.95rem;color:var(--muted);max-width:560px;line-height:1.8;font-weight:300}
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:3rem}
+    .service-card{padding:2rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
+    .service-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--accent2),var(--accent),var(--indigo));opacity:0;transition:opacity 0.2s}
+    .service-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+    .service-card:hover::after{opacity:1}
+    .service-tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:0.85rem}
+    .service-card h3{font-family:var(--head);font-weight:700;font-size:1.05rem;margin-bottom:0.7rem;line-height:1.3}
+    .service-card p{font-size:0.85rem;color:var(--muted);line-height:1.75}
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .how-step{padding:1.75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);text-align:center}
+    .how-num{font-family:var(--head);font-weight:800;font-size:2rem;color:var(--accent);margin-bottom:0.5rem;opacity:0.5}
+    .how-step h4{font-family:var(--head);font-weight:700;font-size:0.95rem;margin-bottom:0.5rem}
+    .how-step p{font-size:0.84rem;color:var(--muted);line-height:1.7}
+    .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .contact-form{display:flex;flex-direction:column;gap:0.85rem;margin-top:1.5rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+    .form-field{display:flex;flex-direction:column;gap:0.35rem}
+    .form-field label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .form-field input,.form-field textarea,.form-field select{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:0.65rem 0.9rem;color:var(--text);font-family:var(--body);font-size:0.88rem;outline:none;transition:border-color 0.2s}
+    .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent2)}
+    .form-field select option{background:#110e22}
+    .form-field textarea{resize:vertical;min-height:110px}
+    .consult-note{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;color:var(--accent2);border:1px solid var(--border-strong);padding:0.5rem 0.9rem;border-radius:var(--radius);display:inline-block;margin-top:1rem}
+    footer{border-top:1px solid var(--border);padding:2rem 0}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{display:flex;align-items:center;gap:0.5rem;font-family:var(--head);font-weight:800;font-size:0.88rem;letter-spacing:0.05em}
+    .footer-logo img{height:26px;width:26px;object-fit:cover}
+    .footer-copy{font-family:var(--mono);font-size:0.63rem;color:var(--muted)}
+    .footer-links{display:flex;gap:1.5rem;list-style:none}
+    .footer-links a{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+    .footer-links a:hover{color:var(--accent2)}
+    @media(max-width:900px){.services-grid,.contact-inner{grid-template-columns:1fr;gap:2.5rem}.how-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.form-row{grid-template-columns:1fr}}
+    @media(max-width:600px){.how-grid{grid-template-columns:1fr}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .page-hero h1{animation:fadeUp 0.5s 0.05s ease both}.page-hero p{animation:fadeUp 0.5s 0.15s ease both}.page-hero .btn-primary{animation:fadeUp 0.5s 0.25s ease both}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/lioren-logo.png" alt="Lioren" />
+      <div class="nav-logo-text">LIOREN<span>.</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="legal.html">Legal Engine</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Lioren</a><span>/</span>Solutions</div>
+    <h1>AI built for the way your<br/><em>business actually works.</em></h1>
+    <p>Practical AI solutions for small and mid-size businesses. We handle the implementation so you can focus on what you do best — no technical background required.</p>
+    <a href="#contact" class="btn-primary">Free consultation</a>
+  </div>
+</div>
+
+<section class="alt-bg" id="services">
+  <div class="container">
+    <div class="section-tag">What We Build</div>
+    <h2 class="section-title">Smarter tools. Real results.</h2>
+    <p class="section-body">We identify where AI can make the biggest difference for your operation and build solutions tailored to how you work — on industry-standard platforms selected for your needs.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-tag">Document Processing</div>
+        <h3>Stop spending hours on paperwork.</h3>
+        <p>Contracts, invoices, policy documents — we build systems that analyze, summarize, and flag what matters so you can make faster decisions with less risk. What used to take hours takes minutes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-tag">Workflow Automation</div>
+        <h3>Eliminate the repetitive work.</h3>
+        <p>If your team is doing the same manual tasks every day, there's a better way. We identify where AI can take over repetitive work and implement solutions tailored to your operation — freeing your team for what actually needs them.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-tag">Marketing Content</div>
+        <h3>Stay visible without the overhead.</h3>
+        <p>Consistent, quality content across social media, email, and ads is a full-time job. We build AI-assisted content pipelines that keep your business visible and your messaging consistent — without hiring a content team.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-tag">Data &amp; Reporting</div>
+        <h3>Know your numbers without digging for them.</h3>
+        <p>Turn disconnected spreadsheets and siloed data into clear, actionable dashboards. We build reporting systems that surface what matters so decisions get made on facts, not gut feel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">Simple from start to finish.</h2>
+    <p class="section-body">No lengthy procurement, no bloated proposals. We move fast and build things that work.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <h4>Free Consultation</h4>
+        <p>We learn how your business actually operates — where time is lost, where decisions slow down, what your team wishes was easier.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <h4>Scoped Proposal</h4>
+        <p>We recommend the highest-impact solutions for your situation and give you a clear scope, timeline, and cost before anything starts.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <h4>Build &amp; Hand Off</h4>
+        <p>We build on platforms your team can manage going forward. You get a working solution and the knowledge to use it — not a black box.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg2" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-tag">Get Started</div>
+        <h2 class="section-title">Tell us about your business.</h2>
+        <p class="section-body">The first conversation is free. Tell us what's slowing you down and we'll tell you honestly whether AI can help — and how.</p>
+        <div class="consult-note">Free initial consultation</div>
+        <p style="margin-top:1.75rem;font-family:var(--mono);font-size:0.76rem;color:var(--accent2)">info@liorentechnologies.com</p>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field"><label>Name</label><input type="text" placeholder="Your name" required /></div>
+          <div class="form-field"><label>Business</label><input type="text" placeholder="Your business name" /></div>
+        </div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="you@yourbusiness.com" required /></div>
+        <div class="form-field"><label>What can we help with?</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Document Processing</option>
+            <option>Workflow Automation</option>
+            <option>Marketing Content</option>
+            <option>Data &amp; Reporting</option>
+            <option>Not sure — I need advice</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Tell us more</label><textarea placeholder="What's slowing your business down? What do you wish was easier?"></textarea></div>
+        <button type="submit" class="btn-primary">Request free consultation</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/lioren-logo.png" alt="Lioren" /><span style="margin-left:0.4rem">LIOREN<span style="color:var(--accent2)">.</span></span></div>
+      <div class="footer-copy">© 2026 Lioren Technologies. All rights reserved.</div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="legal.html">Legal Engine</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>function handleSubmit(e){e.preventDefault();const b=e.target.querySelector('button[type="submit"]');b.textContent="Sent — we'll be in touch.";b.style.background='rgba(200,134,42,0.2)';b.style.color='var(--accent2)';b.disabled=true}</script>
+</body>
+</html>
