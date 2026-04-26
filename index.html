@@ -1,1640 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lioren Technology | AI Products and AI Solutions Company</title>
-  <meta
-    name="description"
-    content="Lioren Technology is an AI products and AI solutions company building applied AI systems, intelligent software, and advanced technology experiences."
-  />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lioren Technologies | Deterministic AI Governance</title>
+  <meta name="description" content="Lioren builds deterministic audit infrastructure for AI systems — litigation support, red teaming, and practical AI solutions." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #040813;
-      --bg-soft: #0a1222;
-      --panel: rgba(12, 21, 38, 0.82);
-      --panel-strong: rgba(16, 28, 50, 0.94);
-      --line: rgba(126, 240, 255, 0.16);
-      --line-strong: rgba(255, 131, 160, 0.22);
-      --text: #f5f8ff;
-      --muted: #a2b4cf;
-      --cyan: #70eef8;
-      --cyan-deep: #23bfd7;
-      --coral: #ff829e;
-      --gold: #ffd279;
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --container: min(1180px, calc(100% - 2rem));
-      --spectral-tilt-x: 0deg;
-      --spectral-tilt-y: 0deg;
-      --spectral-shadow-glow: 34px;
-      --spectral-shadow-alpha: 0.08;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 18%, rgba(35, 191, 215, 0.14), transparent 28%),
-        radial-gradient(circle at 82% 12%, rgba(255, 130, 158, 0.16), transparent 24%),
-        linear-gradient(180deg, #02050d 0%, #06101e 46%, #040813 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 120px 120px;
-      mask-image: radial-gradient(circle at center, black 34%, transparent 88%);
-      pointer-events: none;
-      opacity: 0.24;
-      z-index: 0;
-    }
-
-    img,
-    video {
-      display: block;
-      width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .shell {
-      position: relative;
-      z-index: 1;
-    }
-
-    .container {
-      width: var(--container);
-      margin: 0 auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      backdrop-filter: blur(18px);
-      background: rgba(4, 8, 19, 0.72);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .site-header .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      min-height: 82px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      min-width: 0;
-      max-width: min(52vw, 280px);
-    }
-
-    .brand-logo {
-      display: block;
-      width: 100%;
-      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.34));
-    }
-
-    .brand-logo img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-
-    h1,
-    h2,
-    h3,
-    .eyebrow,
-    .stat-value,
-    .btn {
-      font-family: "Space Grotesk", "Avenir Next", sans-serif;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--text);
-    }
-
-    .mobile-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      padding: 0.96rem 1.3rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
-      cursor: pointer;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      color: #05101a;
-      background: linear-gradient(135deg, var(--cyan) 0%, #a3fbff 42%, var(--gold) 100%);
-      box-shadow: 0 18px 42px rgba(112, 238, 248, 0.28);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover,
-    .btn-secondary:focus-visible {
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    main section {
-      padding: clamp(4rem, 7vw, 6.5rem) 0;
-    }
-
-    .hero {
-      padding-top: clamp(4rem, 8vw, 6rem);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.02fr 0.98fr;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.5rem 0.85rem;
-      border: 1px solid rgba(112, 238, 248, 0.18);
-      border-radius: 999px;
-      background: rgba(112, 238, 248, 0.08);
-      color: var(--cyan);
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1.1rem;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 0.6rem;
-      height: 0.6rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--cyan), var(--coral));
-      box-shadow: 0 0 16px rgba(112, 238, 248, 0.55);
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 11ch;
-      font-size: clamp(3rem, 7.4vw, 6rem);
-      line-height: 0.92;
-      letter-spacing: -0.055em;
-    }
-
-    .hero-copy {
-      margin: 1.35rem 0 0;
-      max-width: 61ch;
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.72;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 1.7rem;
-    }
-
-    .hero-strip {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1.8rem;
-    }
-
-    .hero-stat {
-      position: relative;
-      padding: 1rem 1rem 1.05rem;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-    }
-
-    .hero-stat::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--cyan), transparent 84%);
-      opacity: 0.8;
-    }
-
-    .stat-value {
-      display: block;
-      font-size: 1.12rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .hero-stat span:last-child {
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .spectral-console {
-      position: relative;
-      margin-top: 1.45rem;
-      padding: 1rem;
-      border-radius: 28px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at top left, rgba(112, 238, 248, 0.14), transparent 38%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow);
-    }
-
-    .spectral-console::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 30px 30px;
-      opacity: 0.28;
-      pointer-events: none;
-    }
-
-    .spectral-console-top,
-    .spectral-readouts {
-      position: relative;
-      z-index: 1;
-    }
-
-    .spectral-console-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 1rem;
-    }
-
-    .spectral-console-top strong {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 1rem;
-    }
-
-    .spectral-console-top p {
-      margin: 0;
-      max-width: 52ch;
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.64;
-    }
-
-    .spectral-note {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.45rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #d9e7fb;
-      font-size: 0.76rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .spectral-stage {
-      position: relative;
-      z-index: 1;
-      margin-top: 1rem;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        radial-gradient(circle at center, rgba(112, 238, 248, 0.08), transparent 48%),
-        linear-gradient(180deg, rgba(4, 8, 19, 0.7), rgba(4, 8, 19, 0.92));
-    }
-
-    .spectral-canvas {
-      display: block;
-      width: 100%;
-      height: 220px;
-    }
-
-    .spectral-reticle {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow:
-        0 0 0 6px rgba(112, 238, 248, 0.14),
-        0 0 24px rgba(112, 238, 248, 0.42);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    .spectral-readouts {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin-top: 0.9rem;
-    }
-
-    .spectral-readout {
-      padding: 0.9rem 0.95rem;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .spectral-readout span {
-      display: block;
-      margin-bottom: 0.22rem;
-      color: var(--muted);
-      font-size: 0.74rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .spectral-readout strong {
-      font-family: "Space Grotesk", "Avenir Next", sans-serif;
-      font-size: 1.08rem;
-      color: #f5f8ff;
-    }
-
-    .media-stage {
-      position: relative;
-      padding: 1rem;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
-        rgba(10, 18, 34, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow:
-        var(--shadow),
-        0 0 var(--spectral-shadow-glow) rgba(112, 238, 248, var(--spectral-shadow-alpha));
-      min-height: 640px;
-      transform: perspective(1400px) rotateY(var(--spectral-tilt-x)) rotateX(var(--spectral-tilt-y));
-      transform-style: preserve-3d;
-      transition: transform 180ms ease-out, box-shadow 180ms ease-out;
-    }
-
-    .media-stage::before {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 28px;
-      border: 1px solid rgba(112, 238, 248, 0.08);
-      pointer-events: none;
-    }
-
-    .video-frame {
-      position: relative;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      min-height: 520px;
-      background: #01050c;
-    }
-
-    .video-frame video {
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.05) contrast(1.04);
-    }
-
-    .video-frame::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(4, 8, 19, 0.04), rgba(4, 8, 19, 0.62)),
-        linear-gradient(115deg, rgba(4, 8, 19, 0.82) 0%, transparent 42%, transparent 70%, rgba(255, 130, 158, 0.12) 100%);
-      pointer-events: none;
-    }
-
-    .floating-card {
-      position: absolute;
-      right: 1.15rem;
-      bottom: 1.3rem;
-      width: min(42%, 240px);
-      padding: 0.8rem;
-      border-radius: 26px;
-      background: rgba(4, 8, 19, 0.76);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.42);
-      transform: rotate(-7deg);
-      animation: float-card 7s ease-in-out infinite;
-    }
-
-    .floating-card img {
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 20px;
-    }
-
-    .floating-caption {
-      margin-top: 0.8rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .stack-overlay {
-      position: absolute;
-      left: 1.35rem;
-      bottom: 1.35rem;
-      width: min(70%, 330px);
-      padding: 1rem 1.05rem;
-      border-radius: 24px;
-      background: rgba(4, 8, 19, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
-    }
-
-    .stack-overlay strong {
-      display: block;
-      margin-bottom: 0.7rem;
-      font-size: 1rem;
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-    }
-
-    .chip {
-      padding: 0.46rem 0.72rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.04);
-      color: #dbe8ff;
-      font-size: 0.82rem;
-      white-space: nowrap;
-    }
-
-    .chip.highlight {
-      border-color: rgba(112, 238, 248, 0.22);
-      color: var(--cyan);
-      background: rgba(112, 238, 248, 0.08);
-    }
-
-    .section-intro {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 1.5rem;
-      margin-bottom: 1.7rem;
-    }
-
-    .section-intro h2 {
-      margin: 0;
-      font-size: clamp(2rem, 4.4vw, 3.6rem);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-    }
-
-    .section-intro p,
-    .lede {
-      margin: 0;
-      max-width: 60ch;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.72;
-    }
-
-    .lede {
-      margin-top: 0.9rem;
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .card {
-      position: relative;
-      padding: 1.35rem;
-      border-radius: 28px;
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(112, 238, 248, 0.8), rgba(255, 130, 158, 0));
-    }
-
-    .card-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.36rem 0.7rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--muted);
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .card h3 {
-      margin: 1rem 0 0.6rem;
-      font-size: 1.18rem;
-      line-height: 1.15;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.72;
-      font-size: 0.95rem;
-    }
-
-    .bullet-list {
-      list-style: none;
-      margin: 1rem 0 0;
-      padding: 0;
-      display: grid;
-      gap: 0.65rem;
-      color: #d7e3f8;
-      font-size: 0.92rem;
-    }
-
-    .bullet-list li {
-      position: relative;
-      padding-left: 1rem;
-    }
-
-    .bullet-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.62rem;
-      width: 0.38rem;
-      height: 0.38rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--cyan), var(--coral));
-      box-shadow: 0 0 12px rgba(112, 238, 248, 0.4);
-    }
-
-    .band {
-      margin-top: 1.2rem;
-      padding: 1rem 1.15rem;
-      border-radius: 24px;
-      background: linear-gradient(90deg, rgba(112, 238, 248, 0.08), rgba(255, 130, 158, 0.06));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: #dae6fb;
-    }
-
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 1rem;
-    }
-
-    .showcase-panel {
-      padding: 1rem;
-      border-radius: 30px;
-      background: var(--panel-strong);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow);
-    }
-
-    .showcase-panel.full-span {
-      grid-column: 1 / -1;
-    }
-
-    .showcase-panel h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.1rem;
-    }
-
-    .showcase-panel p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.68;
-    }
-
-    .showcase-media {
-      margin-top: 1rem;
-      overflow: hidden;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #01050d;
-    }
-
-    .showcase-media video {
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-
-    .showcase-media img {
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-    }
-
-    .showcase-gallery {
-      display: grid;
-      gap: 0.9rem;
-      margin-top: 1rem;
-      width: min(100%, 720px);
-      margin-inline: auto;
-    }
-
-    .showcase-gallery-main,
-    .brand-strip {
-      overflow: hidden;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #01050d;
-    }
-
-    .showcase-gallery-main img {
-      aspect-ratio: 6 / 5;
-      object-fit: cover;
-    }
-
-    .brand-strip {
-      padding: 0.75rem;
-      background: rgba(255, 255, 255, 0.97);
-    }
-
-    .brand-strip img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .signal-list {
-      display: grid;
-      gap: 0.85rem;
-      margin-top: 1rem;
-    }
-
-    .signal-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.85rem;
-      align-items: start;
-      padding: 1rem;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .signal-index {
-      width: 2.2rem;
-      height: 2.2rem;
-      display: grid;
-      place-items: center;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--coral), var(--cyan));
-      color: #041019;
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    .signal-item strong {
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 1rem;
-    }
-
-    .signal-item span {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    .approach-grid {
-      display: grid;
-      grid-template-columns: 0.94fr 1.06fr;
-      gap: 1rem;
-    }
-
-    .approach-panel {
-      padding: 1.4rem;
-      border-radius: 30px;
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: var(--shadow);
-    }
-
-    .matrix {
-      margin-top: 1rem;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-    }
-
-    .matrix-item {
-      padding: 1rem;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .matrix-item strong {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 0.98rem;
-    }
-
-    .matrix-item span {
-      color: var(--muted);
-      font-size: 0.93rem;
-      line-height: 1.58;
-    }
-
-    .contact-card {
-      position: relative;
-      padding: clamp(1.5rem, 4vw, 2.2rem);
-      border-radius: 34px;
-      background:
-        radial-gradient(circle at top left, rgba(112, 238, 248, 0.16), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(255, 130, 158, 0.18), transparent 28%),
-        #091223;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .contact-card::after {
-      content: "";
-      position: absolute;
-      inset: 18px;
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      pointer-events: none;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1rem;
-      align-items: end;
-    }
-
-    .contact-points {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-top: 1.4rem;
-    }
-
-    .contact-point {
-      padding: 1rem;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .contact-point strong {
-      display: block;
-      margin-bottom: 0.28rem;
-    }
-
-    .contact-point span {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.6;
-    }
-
-    footer {
-      padding: 1.8rem 0 2.4rem;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    @keyframes float-card {
-      0%,
-      100% {
-        transform: rotate(-7deg) translateY(0);
-      }
-
-      50% {
-        transform: rotate(-5deg) translateY(-10px);
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid,
-      .showcase-grid,
-      .approach-grid,
-      .contact-grid,
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-strip,
-      .contact-points,
-      .matrix {
-        grid-template-columns: 1fr;
-      }
-
-      .spectral-readouts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .section-intro {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .media-stage {
-        min-height: 0;
-      }
-
-      .video-frame {
-        min-height: 440px;
-      }
-
-      .contact-grid {
-        align-items: start;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .site-header .container {
-        min-height: 74px;
-      }
-
-      .mobile-toggle {
-        display: inline-grid;
-        place-items: center;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 74px;
-        left: 1rem;
-        right: 1rem;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.9rem;
-        padding: 1rem;
-        border-radius: 20px;
-        background: rgba(4, 8, 19, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: var(--shadow);
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      h1 {
-        max-width: 100%;
-      }
-
-      .video-frame {
-        min-height: 380px;
-      }
-
-      .spectral-console-top {
-        flex-direction: column;
-      }
-
-      .stack-overlay {
-        position: static;
-        width: 100%;
-        margin-top: 1rem;
-      }
-
-      .floating-card {
-        right: 0.8rem;
-        bottom: 6rem;
-        width: min(48%, 220px);
-      }
-
-      .contact-points {
-        margin-top: 1rem;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .hero-actions .btn,
-      .contact-grid .btn {
-        width: 100%;
-      }
-
-      .spectral-readouts {
-        grid-template-columns: 1fr;
-      }
-
-      .floating-card {
-        width: 165px;
-        bottom: 7rem;
-      }
-
-      .brand {
-        max-width: min(58vw, 210px);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
+    :root{
+      --bg:#000000;
+      --bg2:#0a0a0a;
+      --bg3:#111111;
+      --panel:rgba(15,15,15,0.9);
+      --border:rgba(200,134,42,0.15);
+      --border-strong:rgba(200,134,42,0.35);
+      --text:#f0ede8;
+      --muted:#7a7068;
+      --accent:#c8862a;
+      --accent2:#9b4a6e;
+      --indigo:#5a5aaa;
+      --mono:'DM Mono',monospace;
+      --head:'Syne',sans-serif;
+      --body:'DM Sans',sans-serif;
+      --container:min(1100px,calc(100% - 3rem));
+      --radius:3px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--body);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    .container{width:var(--container);margin:0 auto;position:relative;z-index:1}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:1px solid var(--border);background:rgba(0,0,0,0.96);backdrop-filter:blur(12px)}
+    .nav-inner{width:var(--container);margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:0.5rem}
+    .nav-logo img{height:40px;width:40px;object-fit:cover}
+    .nav-logo-text{font-family:var(--head);font-weight:800;font-size:1rem;letter-spacing:0.06em;color:var(--text)}
+    .nav-logo-text span{color:var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+    .nav-links a{font-family:var(--mono);font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+    .nav-links a:hover{color:var(--accent)}
+    .nav-cta{padding:0.4rem 1rem;border:1px solid var(--border-strong);color:var(--accent)!important;border-radius:var(--radius);transition:background 0.2s!important}
+    .nav-cta:hover{background:var(--accent);color:#000!important}
+
+    /* HERO */
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 0 5rem;gap:4rem}
+    .hero-tag{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);border:1px solid var(--border-strong);display:inline-block;padding:0.3rem 0.8rem;border-radius:var(--radius);margin-bottom:1.75rem}
+    .hero h1{font-family:var(--head);font-weight:800;font-size:clamp(2.4rem,4.5vw,4.2rem);line-height:1.08;letter-spacing:-0.02em;margin-bottom:1.5rem}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero-sub{font-size:1rem;color:var(--muted);max-width:480px;margin-bottom:2.5rem;line-height:1.8;font-weight:300}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-primary{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.8rem 1.75rem;background:var(--accent);color:#000;border-radius:var(--radius);font-weight:500;transition:opacity 0.2s,transform 0.15s;display:inline-block;border:none;cursor:pointer}
+    .btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+    .btn-outline{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.8rem 1.75rem;border:1px solid var(--border-strong);color:var(--text);border-radius:var(--radius);transition:border-color 0.2s,color 0.2s;display:inline-block}
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+
+    /* HERO LOGO */
+    .hero-logo-wrap{display:flex;align-items:center;justify-content:center}
+    .hero-logo-wrap img{width:min(420px,100%);height:auto}
+
+    /* STAT BAR */
+    .stat-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.25rem 0;background:var(--bg2)}
+    .stat-bar .container{display:grid;grid-template-columns:repeat(3,1fr)}
+    .stat-item{text-align:center;padding:0 1rem}
+    .stat-item+.stat-item{border-left:1px solid var(--border)}
+    .stat-num{font-family:var(--head);font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:0.35rem}
+    .stat-label{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+    /* SECTIONS */
+    section{padding:5.5rem 0;position:relative;z-index:1}
+    .alt-bg{background:var(--bg2)}
+    .section-tag{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem}
+    .section-title{font-family:var(--head);font-weight:700;font-size:clamp(1.6rem,2.6vw,2.3rem);letter-spacing:-0.02em;line-height:1.2;margin-bottom:1rem}
+    .section-body{font-size:0.95rem;color:var(--muted);max-width:540px;line-height:1.8;font-weight:300}
+
+    /* ENGINE TEASE */
+    .tease-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .tease-panel{padding:1.75rem;border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--panel)}
+    .tease-panel-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;padding-bottom:0.65rem;border-bottom:1px solid var(--border)}
+    .tease-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border)}
+    .tease-row:last-child{border-bottom:none}
+    .tease-row-label{font-size:0.8rem;color:var(--muted)}
+    .tease-row-val{font-family:var(--mono);font-size:0.76rem}
+    .val-good{color:var(--accent)}
+    .val-bad{color:#c05030}
+    .text-link{display:inline-block;margin-top:1.5rem;font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid rgba(200,134,42,0.3);padding-bottom:1px;transition:border-color 0.2s}
+    .text-link:hover{border-color:var(--accent)}
+
+    /* SERVICES */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
+    .service-card{padding:1.75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel);transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
+    .service-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--indigo));opacity:0;transition:opacity 0.2s}
+    .service-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+    .service-card:hover::after{opacity:1}
+    .service-tag{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem}
+    .service-card h3{font-family:var(--head);font-weight:700;font-size:1rem;margin-bottom:0.65rem;line-height:1.3}
+    .service-card p{font-size:0.84rem;color:var(--muted);line-height:1.75}
+
+    /* CONTACT */
+    .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .contact-form{display:flex;flex-direction:column;gap:0.85rem;margin-top:1.5rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem}
+    .form-field{display:flex;flex-direction:column;gap:0.35rem}
+    .form-field label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+    .form-field input,.form-field textarea,.form-field select{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:0.65rem 0.9rem;color:var(--text);font-family:var(--body);font-size:0.88rem;outline:none;transition:border-color 0.2s}
+    .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent)}
+    .form-field select option{background:#0a0a0a}
+    .form-field textarea{resize:vertical;min-height:110px}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:2rem 0}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{display:flex;align-items:center;gap:0.5rem;font-family:var(--head);font-weight:800;font-size:0.88rem;letter-spacing:0.05em}
+    .footer-logo img{height:28px;width:28px;object-fit:cover}
+    .footer-logo span{color:var(--accent)}
+    .footer-copy{font-family:var(--mono);font-size:0.63rem;color:var(--muted)}
+    .footer-links{display:flex;gap:1.5rem;list-style:none}
+    .footer-links a{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
+    .footer-links a:hover{color:var(--accent)}
+
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr;padding-top:7rem}
+      .hero-logo-wrap{display:none}
+      .tease-grid,.contact-inner{grid-template-columns:1fr;gap:2.5rem}
+      .services-grid{grid-template-columns:1fr 1fr}
+      .stat-bar .container{grid-template-columns:1fr}
+      .stat-item+.stat-item{border-left:none;border-top:1px solid var(--border);padding-top:1.5rem;margin-top:1.5rem}
+      .nav-links{display:none}
+      .form-row{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){.services-grid{grid-template-columns:1fr}}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .hero-tag{animation:fadeUp 0.5s ease forwards}
+    .hero h1{animation:fadeUp 0.5s 0.1s ease both}
+    .hero-sub{animation:fadeUp 0.5s 0.2s ease both}
+    .hero-actions{animation:fadeUp 0.5s 0.3s ease both}
+    @keyframes floatLogo{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .hero-logo-wrap img{animation:floatLogo 6s ease-in-out infinite}
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header class="site-header">
-      <div class="container">
-        <a class="brand" href="#top" aria-label="Lioren Technology home">
-          <span class="brand-logo" aria-hidden="true">
-            <img src="assets/lioren-logo-header.png" alt="" />
-          </span>
-        </a>
-
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">Menu</button>
-
-        <nav class="nav-links" id="navLinks">
-          <a href="#stack">Stack</a>
-          <a href="#media">Media</a>
-          <a href="#approach">Approach</a>
-          <a href="#contact" class="btn btn-secondary">Request Demo</a>
-        </nav>
-      </div>
-    </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <div class="eyebrow">AI Products and AI Solutions</div>
-            <h1>An AI products and AI solutions company for modern technology.</h1>
-            <p class="hero-copy">
-              Lioren Technology builds AI products, AI solutions, and intelligent digital systems
-              for organizations that want more than generic software. We combine applied AI,
-              interactive design, and advanced engineering into products that are usable,
-              distinctive, and deployment-ready.
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="mailto:contact@liorentechnologies.com?subject=Lioren%20Technology%20Demo%20Request">Start the conversation</a>
-              <a class="btn btn-secondary" href="#media">View the showcase</a>
-            </div>
-
-            <div class="spectral-console" id="spectralConsole">
-              <div class="spectral-console-top">
-                <div>
-                  <strong>Recovered inverse spectrum</strong>
-                  <p>
-                    Move through the panel to modulate live sine waves seeded from the optimizer
-                    recovery. The waveform and the presentation stage respond to the same pointer
-                    signal in real time.
-                  </p>
-                  <div class="chip-row" style="margin-top: 0.75rem;">
-                    <span class="chip highlight">Mode 01 2.97 Hz</span>
-                    <span class="chip">Mode 02 14.39 Hz</span>
-                    <span class="chip">Mode 03 34.71 Hz</span>
-                  </div>
-                </div>
-                <span class="spectral-note" id="spectralMode">Recovered spectrum</span>
-              </div>
-
-              <div class="spectral-stage">
-                <canvas id="spectralCanvas" class="spectral-canvas" aria-label="Interactive spectral waveform"></canvas>
-                <div class="spectral-reticle" id="spectralReticle" aria-hidden="true"></div>
-              </div>
-
-              <div class="spectral-readouts">
-                <div class="spectral-readout">
-                  <span>Amplitude</span>
-                  <strong id="spectralAmplitude">0.46</strong>
-                </div>
-                <div class="spectral-readout">
-                  <span>Frequency</span>
-                  <strong id="spectralFrequency">2.80 Hz</strong>
-                </div>
-                <div class="spectral-readout">
-                  <span>Phase</span>
-                  <strong id="spectralPhase">0.00π</strong>
-                </div>
-                <div class="spectral-readout">
-                  <span>Energy</span>
-                  <strong id="spectralEnergy">48%</strong>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-strip">
-              <div class="hero-stat">
-                <span class="stat-value">AI products</span>
-                <span>Custom AI-driven software, interfaces, and product concepts built around real use cases.</span>
-              </div>
-              <div class="hero-stat">
-                <span class="stat-value">AI solutions</span>
-                <span>Applied systems for automation, intelligence, operational support, and next-generation experiences.</span>
-              </div>
-              <div class="hero-stat">
-                <span class="stat-value">Built to ship</span>
-                <span>Designed to move from concept to live product with clear visuals, working systems, and scalable delivery.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="media-stage" aria-label="Lioren media showcase">
-            <div class="video-frame">
-              <video autoplay muted loop playsinline poster="assets/lioren-tech-render.jpg">
-                <source src="assets/lioren-demo.mp4" type="video/mp4" />
-              </video>
-            </div>
-
-            <div class="stack-overlay">
-              <strong>AI focus areas</strong>
-              <div class="chip-row">
-                <span class="chip highlight">Threshold Logic</span>
-                <span class="chip">Coherence Monitoring</span>
-                <span class="chip">Containment Layer</span>
-                <span class="chip">Calibration Support</span>
-              </div>
-            </div>
-
-            <div class="floating-card">
-              <img src="assets/lioren-logo-square.jpg" alt="Lioren Technologies square logo lockup" />
-              <div class="floating-caption">
-                <span>Identity study</span>
-                <span>Square lockup</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="stack">
-        <div class="container">
-          <div class="section-intro">
-            <div>
-              <h2>AI products and solutions</h2>
-              <p class="lede">
-                Lioren brings together AI product thinking, technical implementation, and visual
-                systems design into a focused portfolio of intelligent products and deployable
-                solutions.
-              </p>
-            </div>
-          </div>
-
-          <div class="products-grid">
-            <article class="card">
-              <span class="card-tag">AI Products</span>
-              <h3>AI Product Development</h3>
-              <p>
-                We design and build AI-powered products, assistants, and intelligent software
-                experiences that are useful, distinctive, and ready for real users.
-              </p>
-              <ul class="bullet-list">
-                <li>Custom AI applications and interfaces</li>
-                <li>Product concepts shaped around real workflows</li>
-                <li>Production-ready builds for launch and iteration</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <span class="card-tag">AI Solutions</span>
-              <h3>Automation and Decision Support</h3>
-              <p>
-                We create AI solutions that help teams automate work, surface useful signals, and
-                make faster decisions with clearer operational visibility.
-              </p>
-              <ul class="bullet-list">
-                <li>Workflow automation and operational support</li>
-                <li>Monitoring, alerts, and explainable outputs</li>
-                <li>Human-in-the-loop review and control flows</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <span class="card-tag">AI Safety</span>
-              <h3>Control and Safeguards</h3>
-              <p>
-                We build control layers and protective logic that make AI-driven systems more
-                predictable, visible, and easier to manage in real environments.
-              </p>
-              <ul class="bullet-list">
-                <li>Guardrails, fallbacks, and response logic</li>
-                <li>Clear system status for operators and teams</li>
-                <li>Scenario-based testing and validation</li>
-              </ul>
-            </article>
-
-            <article class="card">
-              <span class="card-tag">Delivery</span>
-              <h3>Integration and Deployment</h3>
-              <p>
-                We support implementation, tuning, and rollout so AI products move from concept to
-                working business systems with less friction.
-              </p>
-              <ul class="bullet-list">
-                <li>System integration and launch support</li>
-                <li>Quality checks, tuning, and refinement</li>
-                <li>Technical documentation and handoff</li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="band">
-            Lioren combines AI product strategy, hands-on development, and deployable solutions in
-            one focused delivery model.
-          </div>
-        </div>
-      </section>
-
-      <section id="media">
-        <div class="container">
-          <div class="section-intro">
-            <div>
-              <h2>Media and proof points</h2>
-              <p class="lede">
-                The visual set now focuses on interface hardware and clearer identity assets
-                without repeating one image across the whole page.
-              </p>
-            </div>
-          </div>
-
-          <div class="showcase-grid">
-            <article class="showcase-panel full-span">
-              <h3>Visual system studies</h3>
-              <p>
-                The bottom section is now more selective: one main technology image and one clean
-                horizontal brand lockup, without the extra supporting thumbnails.
-              </p>
-              <div class="showcase-gallery">
-                <div class="showcase-gallery-main">
-                  <img src="assets/lioren-tech-render.jpg" alt="Lioren technology render with blue interface controls and light trails" />
-                </div>
-
-                <div class="brand-strip">
-                  <img src="assets/lioren-brand-horizontal.png" alt="Lioren Technologies horizontal brand lockup" />
-                </div>
-              </div>
-
-              <div class="signal-list">
-                <div class="signal-item">
-                  <div class="signal-index">01</div>
-                  <div>
-                    <strong>Tech-facing image set</strong>
-                    <span>The main still now anchors the section with hardware and signal-routing visuals instead of a busier mixed gallery.</span>
-                  </div>
-                </div>
-                <div class="signal-item">
-                  <div class="signal-index">02</div>
-                  <div>
-                    <strong>Cleaner composition</strong>
-                    <span>The media block now reads as a focused pair instead of a collage of competing visuals.</span>
-                  </div>
-                </div>
-                <div class="signal-item">
-                  <div class="signal-index">03</div>
-                  <div>
-                    <strong>Less repetition</strong>
-                    <span>The page now spreads distinct assets across hero, media, and brand sections so each block feels intentionally different.</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="approach">
-        <div class="container approach-grid">
-          <article class="approach-panel">
-            <div class="section-intro">
-              <div>
-                <h2>Operating model</h2>
-                <p>
-                  Lioren is strongest when the product language, simulation materials, and engineering
-                  story all point to the same claim: symbolic systems can be fast, bounded, and easier
-                  to trust.
-                </p>
-              </div>
-            </div>
-
-            <div class="signal-list">
-              <div class="signal-item">
-                <div class="signal-index">1</div>
-                <div>
-                  <strong>Observe</strong>
-                  <span>Gather runtime signals that matter instead of burying the operator in black-box scores.</span>
-                </div>
-              </div>
-              <div class="signal-item">
-                <div class="signal-index">2</div>
-                <div>
-                  <strong>Compute</strong>
-                  <span>Apply deterministic symbolic rules and thresholds that stay explainable under review.</span>
-                </div>
-              </div>
-              <div class="signal-item">
-                <div class="signal-index">3</div>
-                <div>
-                  <strong>Contain</strong>
-                  <span>Trigger graceful responses when the system drifts, rather than waiting for undefined behavior.</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="approach-panel">
-            <div class="section-intro">
-              <div>
-                <h2>What teams can expect</h2>
-                <p>
-                  Lioren is built for teams that want AI products and AI solutions they can
-                  understand, ship, and improve without unnecessary complexity.
-                </p>
-              </div>
-            </div>
-
-            <div class="matrix">
-              <div class="matrix-item">
-                <strong>Clear product thinking</strong>
-                <span>Every engagement is shaped around a usable product or solution, not a vague technical experiment.</span>
-              </div>
-              <div class="matrix-item">
-                <strong>Practical AI delivery</strong>
-                <span>The work is designed to move from idea to working implementation with fewer handoff gaps.</span>
-              </div>
-              <div class="matrix-item">
-                <strong>Coherent solutions</strong>
-                <span>Product design, AI logic, interfaces, and system behavior are developed as one connected experience.</span>
-              </div>
-              <div class="matrix-item">
-                <strong>Deployment support</strong>
-                <span>Integration, refinement, and rollout support stay part of the work instead of being left for later.</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="container">
-          <div class="contact-card">
-            <div class="contact-grid">
-              <div>
-                <div class="eyebrow">Contact</div>
-                <h2>Bring AI into a real product.</h2>
-                <p class="lede">
-                  If you need an AI products and AI solutions partner, Lioren can help shape the
-                  concept, build the system, and prepare it for launch.
-                </p>
-              </div>
-
-              <a class="btn btn-primary" href="mailto:contact@liorentechnologies.com?subject=Lioren%20Technology%20Inquiry">
-                contact@liorentechnologies.com
-              </a>
-            </div>
-
-            <div class="contact-points">
-              <div class="contact-point">
-                <strong>AI product strategy</strong>
-                <span>Clarify what to build, who it serves, and how the product should come to market.</span>
-              </div>
-              <div class="contact-point">
-                <strong>AI solution delivery</strong>
-                <span>Turn ideas into working systems, interfaces, and deployable customer-facing experiences.</span>
-              </div>
-              <div class="contact-point">
-                <strong>Launch support</strong>
-                <span>Refine, package, and extend the product once the direction and scope are locked in.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container footer-row">
-        <span>&copy; 2026 Lioren Technology. AI products and AI solutions company.</span>
-        <span>AI products • AI solutions • intelligent systems</span>
-      </div>
-    </footer>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/lioren-logo.png" alt="Lioren" />
+      <div class="nav-logo-text">LIOREN<span>.</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="legal.html">Legal Engine</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
   </div>
+</nav>
 
-  <script>
-    const mobileToggle = document.getElementById("mobileToggle");
-    const navLinks = document.getElementById("navLinks");
-    const spectralConsole = document.getElementById("spectralConsole");
-    const spectralCanvas = document.getElementById("spectralCanvas");
-    const spectralReticle = document.getElementById("spectralReticle");
-    const spectralAmplitude = document.getElementById("spectralAmplitude");
-    const spectralFrequency = document.getElementById("spectralFrequency");
-    const spectralPhase = document.getElementById("spectralPhase");
-    const spectralEnergy = document.getElementById("spectralEnergy");
-    const spectralMode = document.getElementById("spectralMode");
-    const rootStyle = document.documentElement.style;
-    const recoveredSpectrumHz = [2.9668248367036893, 14.38785661391835, 34.709060732594196];
-    const recoveredVisualModes = recoveredSpectrumHz.map((value) => 1.1 + Math.log2(value + 1) * 1.35);
+<div class="container">
+  <div class="hero">
+    <div>
+      <div class="hero-tag">AI Governance Infrastructure</div>
+      <h1>AI output you can<br/><em>actually verify.</em></h1>
+      <p class="hero-sub">Lioren builds deterministic audit infrastructure for AI systems — starting with a Legal Engine that removes hallucination from litigation support by design, not by prompt.</p>
+      <div class="hero-actions">
+        <a href="legal.html" class="btn-primary">Legal Engine</a>
+        <a href="solutions.html" class="btn-outline">AI Solutions</a>
+      </div>
+    </div>
+    <div class="hero-logo-wrap">
+      <img src="assets/lioren-logo.png" alt="Lioren Technologies" />
+    </div>
+  </div>
+</div>
 
-    mobileToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-    });
+<div class="stat-bar">
+  <div class="container">
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Pack finding stability across all models tested</div></div>
+    <div class="stat-item"><div class="stat-num">446→5</div><div class="stat-label">Finding labels per document vs. raw LLM baseline</div></div>
+    <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Validated US federal and state statutory domains</div></div>
+  </div>
+</div>
 
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => navLinks.classList.remove("show"));
-    });
+<section class="alt-bg" id="engine">
+  <div class="container">
+    <div class="tease-grid">
+      <div>
+        <div class="section-tag">Legal Engine</div>
+        <h2 class="section-title">Finding detection that runs before the model.</h2>
+        <p class="section-body">Most legal AI tools delegate finding detection to the model — which means output varies run to run. Lioren's Legal Engine separates statutory element detection from LLM inference entirely. What the engine finds is the same regardless of which model sits downstream.</p>
+        <a href="legal.html" class="text-link">Read the architecture →</a>
+      </div>
+      <div class="tease-panel">
+        <div class="tease-panel-label">Stability comparison — same document, 10 runs</div>
+        <div class="tease-row"><span class="tease-row-label">Raw LLM — unique finding labels</span><span class="tease-row-val val-bad">446</span></div>
+        <div class="tease-row"><span class="tease-row-label">Rich prompt baseline — false positives on clean doc</span><span class="tease-row-val val-bad">3 consistent</span></div>
+        <div class="tease-row"><span class="tease-row-label">Lioren Engine — unique finding labels</span><span class="tease-row-val val-good">5</span></div>
+        <div class="tease-row"><span class="tease-row-label">Lioren Engine — false positives on clean doc</span><span class="tease-row-val val-good">0</span></div>
+        <div class="tease-row"><span class="tease-row-label">Pack stability across model providers</span><span class="tease-row-val val-good">100%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    if (spectralConsole && spectralCanvas) {
-      const ctx = spectralCanvas.getContext("2d");
+<section id="services">
+  <div class="container">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">Three ways to work with us.</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-tag">Legal Engine</div>
+        <h3>Deterministic Audit for Litigation Support</h3>
+        <p>Schema-stable, model-agnostic finding detection for charging documents, indictments, and trial exhibits. Currently in early access for litigation support teams and e-discovery firms.</p>
+        <a href="legal.html" class="text-link">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-tag">Red Teaming</div>
+        <h3>Adversarial Evaluation</h3>
+        <p>Systematic adversarial testing of LLM-based systems. We design and execute attack campaigns — prompt injection, jailbreak, multi-turn manipulation — and deliver structured findings with signal data.</p>
+        <a href="#contact" class="text-link">Get in touch →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-tag">Solutions</div>
+        <h3>Practical AI for Your Business</h3>
+        <p>Document processing, workflow automation, content pipelines, and reporting — built for small and mid-size businesses. No technical background required.</p>
+        <a href="solutions.html" class="text-link">See what's possible →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-      if (ctx) {
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const state = {
-          x: 0.52,
-          y: 0.44,
-          targetX: 0.52,
-          targetY: 0.44,
-          active: false,
-          time: 0,
-          width: 0,
-          height: 0,
-          lastTime: performance.now(),
-        };
+<section class="alt-bg" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title">Tell us about your use case.</h2>
+        <p class="section-body">Whether you're evaluating the Legal Engine, need adversarial testing, or want to explore what AI can do for your business — reach out.</p>
+        <p style="margin-top:1.75rem;font-family:var(--mono);font-size:0.76rem;color:var(--accent)">info@liorentechnologies.com</p>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field"><label>Name</label><input type="text" placeholder="Your name" required /></div>
+          <div class="form-field"><label>Organization</label><input type="text" placeholder="Company or firm" /></div>
+        </div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="you@organization.com" required /></div>
+        <div class="form-field"><label>Interest</label>
+          <select>
+            <option value="">Select one</option>
+            <option>Legal Engine — Early Access</option>
+            <option>Adversarial Evaluation / Red Teaming</option>
+            <option>AI Governance Advisory</option>
+            <option>AI Solutions for My Business</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Message</label><textarea placeholder="Tell us about your use case"></textarea></div>
+        <button type="submit" class="btn-primary">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
-        const resizeSpectralCanvas = () => {
-          const dpr = Math.min(window.devicePixelRatio || 1, 2);
-          const bounds = spectralCanvas.getBoundingClientRect();
-          state.width = Math.max(1, Math.round(bounds.width));
-          state.height = Math.max(1, Math.round(bounds.height));
-          spectralCanvas.width = Math.round(state.width * dpr);
-          spectralCanvas.height = Math.round(state.height * dpr);
-          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        };
-
-        const drawWave = (amplitude, frequency, phase, strokeStyle, lineWidth, verticalOffset) => {
-          ctx.beginPath();
-
-          for (let x = 0; x <= state.width; x += 3) {
-            const t = x / state.width;
-            const envelope = 0.68 + 0.32 * Math.sin((t * 1.9 + state.time * 0.2) * Math.PI);
-            const modulator = Math.sin((t * frequency * Math.PI * 2) + phase);
-            const harmonic = Math.sin((t * (frequency * 0.5) * Math.PI * 2) - phase * 0.55) * 10;
-            const y =
-              state.height * verticalOffset +
-              modulator * state.height * amplitude * envelope +
-              harmonic;
-
-            if (x === 0) {
-              ctx.moveTo(x, y);
-            } else {
-              ctx.lineTo(x, y);
-            }
-          }
-
-          ctx.lineWidth = lineWidth;
-          ctx.strokeStyle = strokeStyle;
-          ctx.stroke();
-        };
-
-        function renderFrame(now) {
-          const delta = Math.min((now - state.lastTime) / 1000, 0.032);
-          state.lastTime = now;
-
-          const easing = state.active ? 0.14 : 0.07;
-          state.x += (state.targetX - state.x) * easing;
-          state.y += (state.targetY - state.y) * easing;
-          state.time += delta * (1.3 + state.x * 1.4);
-
-          const amplitudeValue = 0.16 + (1 - state.y) * 0.5;
-          const modeWeights = [
-            clamp(0.56 + (1 - state.y) * 0.3 - state.x * 0.08, 0.2, 1),
-            clamp(0.34 + state.x * 0.28, 0.16, 1),
-            clamp(0.18 + amplitudeValue * 0.5 + state.x * 0.12, 0.12, 1),
-          ];
-          const weightTotal = modeWeights.reduce((sum, value) => sum + value, 0);
-          const frequencyValue = recoveredSpectrumHz.reduce(
-            (sum, value, index) => sum + (value * modeWeights[index]),
-            0
-          ) / weightTotal;
-          const visualModes = recoveredVisualModes.map(
-            (value, index) => value * (0.9 + state.x * 0.18 + (index * 0.035))
-          );
-          const phaseValue = state.time * 1.65 + state.x * Math.PI * 1.3;
-          const energyValue = clamp(amplitudeValue * 0.92 + frequencyValue / 38, 0, 1);
-
-          ctx.clearRect(0, 0, state.width, state.height);
-
-          const background = ctx.createLinearGradient(0, 0, state.width, state.height);
-          background.addColorStop(0, "rgba(6, 16, 30, 0.98)");
-          background.addColorStop(0.5, "rgba(8, 19, 35, 0.94)");
-          background.addColorStop(1, "rgba(4, 8, 19, 1)");
-          ctx.fillStyle = background;
-          ctx.fillRect(0, 0, state.width, state.height);
-
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-          ctx.lineWidth = 1;
-
-          for (let x = 0; x < state.width; x += 36) {
-            ctx.beginPath();
-            ctx.moveTo(x, 0);
-            ctx.lineTo(x, state.height);
-            ctx.stroke();
-          }
-
-          for (let y = 0; y < state.height; y += 36) {
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(state.width, y);
-            ctx.stroke();
-          }
-
-          ctx.beginPath();
-          ctx.moveTo(0, state.height * 0.5);
-          ctx.lineTo(state.width, state.height * 0.5);
-          ctx.lineWidth = 1.2;
-          ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
-          ctx.stroke();
-
-          drawWave(amplitudeValue * modeWeights[0] * 0.26, visualModes[0], phaseValue * 0.72, "rgba(112, 238, 248, 0.95)", 2.8, 0.48);
-          drawWave(amplitudeValue * modeWeights[1] * 0.18, visualModes[1], phaseValue * 1.08 + 0.6, "rgba(255, 130, 158, 0.82)", 2.1, 0.5);
-          drawWave(amplitudeValue * modeWeights[2] * 0.12, visualModes[2], phaseValue * 1.38 + 1.2, "rgba(255, 210, 121, 0.72)", 1.6, 0.52);
-
-          const glow = ctx.createRadialGradient(
-            state.width * state.x,
-            state.height * state.y,
-            0,
-            state.width * state.x,
-            state.height * state.y,
-            state.width * 0.22
-          );
-          glow.addColorStop(0, "rgba(112, 238, 248, 0.22)");
-          glow.addColorStop(1, "rgba(112, 238, 248, 0)");
-          ctx.fillStyle = glow;
-          ctx.fillRect(0, 0, state.width, state.height);
-
-          spectralReticle.style.left = `${(state.x * 100).toFixed(2)}%`;
-          spectralReticle.style.top = `${(state.y * 100).toFixed(2)}%`;
-          spectralAmplitude.textContent = amplitudeValue.toFixed(2);
-          spectralFrequency.textContent = `${frequencyValue.toFixed(2)} Hz`;
-          spectralPhase.textContent = `${(phaseValue / Math.PI).toFixed(2)}π`;
-          spectralEnergy.textContent = `${Math.round(energyValue * 100)}%`;
-
-          rootStyle.setProperty("--spectral-tilt-x", `${((state.x - 0.5) * 5.5).toFixed(2)}deg`);
-          rootStyle.setProperty("--spectral-tilt-y", `${((0.5 - state.y) * 4.4).toFixed(2)}deg`);
-          rootStyle.setProperty("--spectral-shadow-glow", `${(28 + energyValue * 44).toFixed(0)}px`);
-          rootStyle.setProperty("--spectral-shadow-alpha", (0.06 + energyValue * 0.18).toFixed(3));
-
-          if (!prefersReducedMotion.matches) {
-            window.requestAnimationFrame(renderFrame);
-          }
-        }
-
-        const setPointerTarget = (clientX, clientY) => {
-          const bounds = spectralConsole.getBoundingClientRect();
-          state.targetX = clamp((clientX - bounds.left) / bounds.width, 0, 1);
-          state.targetY = clamp((clientY - bounds.top) / bounds.height, 0, 1);
-          state.active = true;
-          spectralMode.textContent = "Recovered spectrum live";
-
-          if (prefersReducedMotion.matches) {
-            renderFrame(performance.now());
-          }
-        };
-
-        const resetPointerTarget = () => {
-          state.active = false;
-          state.targetX = 0.52;
-          state.targetY = 0.44;
-          spectralMode.textContent = prefersReducedMotion.matches ? "Reduced motion" : "Recovered spectrum";
-
-          if (prefersReducedMotion.matches) {
-            renderFrame(performance.now());
-          }
-        };
-
-        resizeSpectralCanvas();
-
-        spectralConsole.addEventListener("pointermove", (event) => {
-          if (event.pointerType !== "mouse" && event.pointerType !== "pen") {
-            return;
-          }
-          setPointerTarget(event.clientX, event.clientY);
-        });
-
-        spectralConsole.addEventListener("pointerleave", resetPointerTarget);
-
-        window.addEventListener("resize", () => {
-          resizeSpectralCanvas();
-          if (prefersReducedMotion.matches) {
-            renderFrame(performance.now());
-          }
-        });
-
-        if (prefersReducedMotion.matches) {
-          spectralMode.textContent = "Reduced motion";
-          renderFrame(performance.now());
-        } else {
-          window.requestAnimationFrame(renderFrame);
-        }
-      }
-    }
-  </script>
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo"><img src="assets/lioren-logo.png" alt="Lioren" /><span style="margin-left:0.4rem">LIOREN<span style="color:var(--accent)">.</span></span></div>
+      <div class="footer-copy">© 2026 Lioren Technologies. All rights reserved.</div>
+      <ul class="footer-links">
+        <li><a href="legal.html">Legal Engine</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<script>function handleSubmit(e){e.preventDefault();const b=e.target.querySelector('button[type="submit"]');b.textContent='Sent.';b.style.background='rgba(200,134,42,0.2)';b.style.color='var(--accent)';b.disabled=true}</script>
 </body>
 </html>
